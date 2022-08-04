@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace RayWenderlich.SpaceInvadersUnity
+namespace GalaxyDefenders
 {
     public class UVScroll : MonoBehaviour
     {

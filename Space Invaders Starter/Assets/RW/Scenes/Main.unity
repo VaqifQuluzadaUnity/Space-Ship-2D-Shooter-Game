@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 16625293}
   - component: {fileID: 16625294}
   - component: {fileID: 16625295}
+  - component: {fileID: 16625296}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -363,6 +364,84 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &16625296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16625290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f8b51481d480f49b8078d43ea1a704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: efb2806128e50b34c8ff73f17ed9fefe, type: 3}
+  - {fileID: 21300000, guid: cb718a1863b8ef34da64a0250687e387, type: 3}
+  - {fileID: 21300000, guid: 64a61f4b095a9d041a550f4069dbe279, type: 3}
+  - {fileID: 21300000, guid: b0bb5191c63e800459e9f91e0168f1fd, type: 3}
+  - {fileID: 21300000, guid: 4ecc444340f6bbc489b5f5a555d7670c, type: 3}
+  - {fileID: 21300000, guid: c3ecbdfd0bb82be4b945fad355098c67, type: 3}
+  - {fileID: 21300000, guid: e85e1c38b87bde74ca51d16afbb047b9, type: 3}
+  - {fileID: 21300000, guid: 5fa8814243d9ec24b9b1c812c885f6b1, type: 3}
+  - {fileID: 21300000, guid: d48bab7dda31b324bb0f572888d13799, type: 3}
+  - {fileID: 21300000, guid: 0999014cbbac2674695a891cb58a78c2, type: 3}
+  - {fileID: 21300000, guid: 0391752bee2ed5048ac50ac87a35f377, type: 3}
+  - {fileID: 21300000, guid: 9d716e534ae9d744fbcb5f348a655697, type: 3}
+  - {fileID: 21300000, guid: 31acf7b7a4f88cb4887b83714840aed5, type: 3}
+  - {fileID: 21300000, guid: ab66530cf7e9c3746a04826d2b4b9bbf, type: 3}
+  - {fileID: 21300000, guid: 31095c7443b11ec498f5c0e54ac870e1, type: 3}
+  - {fileID: 21300000, guid: f23e58a3de156a340bf5a995944d9453, type: 3}
+  - {fileID: 21300000, guid: ddb58018301b5ad4aaff92b732ecf141, type: 3}
+  - {fileID: 21300000, guid: 07dbb059c5fdb5145aef63b19131e5b5, type: 3}
+  - {fileID: 21300000, guid: 7624026b493f6cb41a26067417991ba8, type: 3}
+  - {fileID: 21300000, guid: a81b38e832264c7459b1e924ef10090d, type: 3}
+  spawnPoints:
+  - {fileID: 294175664}
+  - {fileID: 2020792614}
+  - {fileID: 75105818}
+  - {fileID: 1570971589}
+  - {fileID: 1861341774}
+  - {fileID: 552510922}
+  - {fileID: 749597620}
+  - {fileID: 174131361}
+  - {fileID: 668235562}
+  - {fileID: 843691781}
+  - {fileID: 1497067448}
+  - {fileID: 101750009}
+  - {fileID: 2087820212}
+  - {fileID: 965060064}
+  - {fileID: 749675387}
+  - {fileID: 499100035}
+  - {fileID: 929090029}
+  - {fileID: 1264404310}
+  - {fileID: 898343683}
+  - {fileID: 772883605}
+  - {fileID: 1630078294}
+  - {fileID: 1845758860}
+  - {fileID: 665315299}
+  - {fileID: 1747013835}
+  - {fileID: 2039006256}
+  - {fileID: 1161279268}
+  - {fileID: 1224426567}
+  - {fileID: 1845285024}
+  - {fileID: 197704985}
+  - {fileID: 895627904}
+  - {fileID: 1524970901}
+  - {fileID: 2062471677}
+  - {fileID: 195336507}
+  - {fileID: 1696730243}
+  - {fileID: 1470320231}
+  - {fileID: 204283248}
+  - {fileID: 308208474}
+  - {fileID: 430727109}
+  - {fileID: 1870264518}
+  - {fileID: 2043248089}
+  - {fileID: 117012882}
+  - {fileID: 756604435}
+  - {fileID: 423732914}
+  speed: 200
 --- !u!1001 &66738139
 PrefabInstance:
   m_ObjectHideFlags: 0
