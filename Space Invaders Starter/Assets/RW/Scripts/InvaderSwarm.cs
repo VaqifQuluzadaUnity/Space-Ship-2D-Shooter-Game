@@ -25,10 +25,8 @@ namespace GalaxyDefenders
         private int tempKillCount;
         private float minY;
         private float currentY;
-        public int randomEnemy = Random.Range(0, 3);
-        public int randomSpawnPoint = Random.Range(0, 43);
-
-        GameObject swarm = new GameObject { name = "Swarm" };
+        public int randomEnemy;
+        public int randomSpawnPoint;
 
         public IEnumerator SpawnEnemyWave(float n)
         {
@@ -44,25 +42,31 @@ namespace GalaxyDefenders
                     
                     for(int i= 0; i < columnCount; i++)
                     {
+                        randomEnemy = Random.Range(0, enemyPrefabs.Length);
+                        randomSpawnPoint = Random.Range(0, spawnPoints.Length);
                         Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
                     }
+                    enemyCount = 0;
                 }
-                enemyCount = 0;
-            }
 
-            else if (enemyCount > columnCount)
-            {
-                enemyCount -= columnCount;
+                else if (enemyCount > columnCount)
+                {
+                    enemyCount -= columnCount;
 
-                Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+                    for (int i = 0; i < columnCount; i++)
+                    {
+                        randomEnemy = Random.Range(0, enemyPrefabs.Length);
+                        randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+                        Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+                    }
+                    yield return new WaitForSeconds(n);
+                }
             }
 
             else if(enemyCount == 0)
             {
 
             }
-
-            yield return new WaitForSeconds(n);
         }
 
         internal void IncreaseDeathCount()
@@ -105,9 +109,9 @@ namespace GalaxyDefenders
 
         private void Start()
         {
-            StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
-
             xSpacing = Random.Range(25, 30);
+
+            //GameObject swarm = new GameObject { name = "Swarm" };
 
             currentY = spawnPoints[randomSpawnPoint].position.y;
             minY = cannonPosition.position.y;
@@ -115,16 +119,20 @@ namespace GalaxyDefenders
             for (int i = 0; i < columnCount; i++)
             {
                 var bulletSpawner = Instantiate(bulletSpawnerPrefab);
-                bulletSpawner.transform.SetParent(swarm.transform);
+                bulletSpawner.transform.SetParent(enemyPrefabs[randomEnemy].transform);
                 bulletSpawner.Setup();
             }
         }
 
         private void Update()
         {
+            StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
+
             yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
 
-            MoveInvaders(-yDecrement);
+            enemyPrefabs[randomEnemy].transform.Translate(speedFactor * musicControl.Tempo * Time.deltaTime * Vector2.down);
+
+            //MoveInvaders(-yDecrement);
 
             currentY -= yDecrement;
 
@@ -137,7 +145,7 @@ namespace GalaxyDefenders
 
         private void MoveInvaders(float y)
         {
-            enemyPrefabs[1].transform.Translate(0, y, 0);
+            enemyPrefabs[randomEnemy].transform.Translate(0, y, 0);
         }
     }
 }

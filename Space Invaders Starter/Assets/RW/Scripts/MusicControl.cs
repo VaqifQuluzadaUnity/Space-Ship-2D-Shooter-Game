@@ -4,21 +4,13 @@ namespace GalaxyDefenders
 {
     public class MusicControl : MonoBehaviour
     {
+        [SerializeField] private AudioSource source;
+        [SerializeField] internal int pitchChangeSteps = 5;
+        [SerializeField] private float maxPitch = 5.25f;
+
         private readonly float defaultTempo = 1.33f;
-
-        [SerializeField]
-        private AudioSource source;
-
-        [SerializeField]
-        internal int pitchChangeSteps = 5;
-
-        [SerializeField]
-        private float maxPitch = 5.25f;
-
         private float pitchChange;
-
         internal float Tempo { get; private set; }
-
         internal void StopPlaying() => source.Stop();
 
         internal void IncreasePitch()

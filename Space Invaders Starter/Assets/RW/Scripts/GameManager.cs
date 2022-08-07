@@ -8,41 +8,19 @@ namespace GalaxyDefenders
     {
         internal static GameManager Instance;
 
-        [SerializeField]
-        private AudioSource sfx;
-
-        [SerializeField]
-        private GameObject explosionPrefab;
-
-        [SerializeField]
-        private float explosionTime = 1f;
-
-        [SerializeField]
-        private AudioClip explosionClip;
-
-        [SerializeField]
-        private int maxLives = 3;
-
-        [SerializeField]
-        private Text livesLabel;
+        [SerializeField] private AudioSource sfx;
+        [SerializeField] private GameObject explosionPrefab;
+        [SerializeField] private float explosionTime = 1f;
+        [SerializeField] private AudioClip explosionClip;
+        [SerializeField] private int maxLives = 3;
+        [SerializeField] private Text livesLabel;
+        [SerializeField] private MusicControl music;
+        [SerializeField] private Text scoreLabel;
+        [SerializeField] private GameObject gameOver;
+        [SerializeField] private GameObject allClear;
+        [SerializeField] private Button restartButton;
 
         private int lives;
-
-        [SerializeField]
-        private MusicControl music;
-
-        [SerializeField]
-        private Text scoreLabel;
-
-        [SerializeField]
-        private GameObject gameOver;
-
-        [SerializeField]
-        private GameObject allClear;
-
-        [SerializeField]
-        private Button restartButton;
-
         private int score;
 
         internal void UpdateScore(int value)
@@ -61,9 +39,14 @@ namespace GalaxyDefenders
             music.StopPlaying();
         }
 
+        internal void AddLives()
+        {
+            lives++;
+        }
+
         internal void UpdateLives()
         {
-            lives = Mathf.Clamp(lives - 1, 0, maxLives);
+            lives--;
             livesLabel.text = $"Lives: {lives}";
             if (lives > 0)
             {
