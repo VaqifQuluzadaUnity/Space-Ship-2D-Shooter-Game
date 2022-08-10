@@ -1,151 +1,159 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GalaxyDefenders
 {
-    public class InvaderSwarm : MonoBehaviour
-    {
-        [SerializeField] Transform[] spawnPoints;
-        [SerializeField] public GameObject[] enemyPrefabs;
-        [SerializeField] private float speedFactor = 10f;
-        [SerializeField] private BulletSpawner bulletSpawnerPrefab;
-        [SerializeField] private MusicControl musicControl;
-        [SerializeField] private Transform cannonPosition;
+	public class InvaderSwarm : MonoBehaviour
+	{
+		[SerializeField] Transform[] spawnPoints;
+		[SerializeField] public GameObject[] enemyPrefabs;
+		[SerializeField] private float speedFactor = 10f;
+		[SerializeField] private BulletSpawner bulletSpawnerPrefab;
+		[SerializeField] private MusicControl musicControl;
+		[SerializeField] private Transform cannonPosition;
+		[SerializeField] private List<GameObject> spawnedEnemies = new List<GameObject>();
+		internal static InvaderSwarm Instance;
 
-        internal static InvaderSwarm Instance;
+		private int columnCount;
+		private int enemyCount = 20;
+		private int points = 0;
+		private float yDecrement=1;
+		private float xSpacing;
+		private int killCount;
+		private int tempKillCount;
+		private float minY;
+		private float currentY;
+		public int randomEnemy;
+		public int randomSpawnPoint;
 
-        private int columnCount;
-        private int enemyCount=20;
-        private int points = 0;
-        private float yDecrement;
-        private float xSpacing;
-        private int killCount;
-        private int tempKillCount;
-        private float minY;
-        private float currentY;
-        public int randomEnemy;
-        public int randomSpawnPoint;
+		public IEnumerator SpawnEnemyWave(float n)
+		{
+			n = 3f;
+			
+			columnCount = Random.Range(1, 6);
 
-        public IEnumerator SpawnEnemyWave(float n)
-        {
-            n = 3f;
+			if (enemyCount != 0)
+			{
+				if (enemyCount < columnCount)
+				{
+					columnCount = enemyCount;
 
-            columnCount = Random.Range(1, 6);
+					for (int i = 0; i < columnCount; i++)
+					{
+						randomEnemy = Random.Range(0, enemyPrefabs.Length);
+						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						GameObject enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+						spawnedEnemies.Add(enemy);
+					}
+					enemyCount = 0;
+				}
 
-            if(enemyCount != 0)
-            {
-                if (enemyCount < columnCount)
-                {
-                    columnCount = enemyCount;
-                    
-                    for(int i= 0; i < columnCount; i++)
-                    {
-                        randomEnemy = Random.Range(0, enemyPrefabs.Length);
-                        randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-                        Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
-                    }
-                    enemyCount = 0;
-                }
+				else if (enemyCount > columnCount)
+				{
+					enemyCount -= columnCount;
 
-                else if (enemyCount > columnCount)
-                {
-                    enemyCount -= columnCount;
+					for (int i = 0; i < columnCount; i++)
+					{
+						randomEnemy = Random.Range(0, enemyPrefabs.Length);
+						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
 
-                    for (int i = 0; i < columnCount; i++)
-                    {
-                        randomEnemy = Random.Range(0, enemyPrefabs.Length);
-                        randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-                        Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
-                    }
-                    yield return new WaitForSeconds(n);
-                }
-            }
+						GameObject enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+						spawnedEnemies.Add(enemy);
 
-            else if(enemyCount == 0)
-            {
+					}
+					
+					yield return new WaitForSeconds(n);
+				}
+			}
 
-            }
-        }
+			else if (enemyCount == 0)
+			{
 
-        internal void IncreaseDeathCount()
-        {
-            killCount++;
-            if (killCount == enemyCount)
-            {
-                GameManager.Instance.TriggerGameOver(false);
-                return;
-            }
-            tempKillCount++;
-            if (tempKillCount < enemyCount / musicControl.pitchChangeSteps)
-            {
-                return;
-            }
+			}
+		}
 
-            musicControl.IncreasePitch();
-            tempKillCount = 0;
-        }
+		internal void IncreaseDeathCount()
+		{
+			killCount++;
+			if (killCount == enemyCount)
+			{
+				GameManager.Instance.TriggerGameOver(false);
+				return;
+			}
+			tempKillCount++;
+			if (tempKillCount < enemyCount / musicControl.pitchChangeSteps)
+			{
+				return;
+			}
 
-        internal int GetPoints()
-        {
-            points++;
-            return 0;
-        }
+			musicControl.IncreasePitch();
+			tempKillCount = 0;
+		}
 
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
+		internal int GetPoints()
+		{
+			points++;
+			return 0;
+		}
 
-        float spawnTimeDelay = 3f;
+		private void Awake()
+		{
+			if (Instance == null)
+			{
+				Instance = this;
+			}
+			else if (Instance != this)
+			{
+				Destroy(gameObject);
+			}
+		}
 
-        private void Start()
-        {
-            xSpacing = Random.Range(25, 30);
+		float spawnTimeDelay = 3f;
 
-            //GameObject swarm = new GameObject { name = "Swarm" };
+		private void Start()
+		{
+			xSpacing = Random.Range(25, 30);
 
-            currentY = spawnPoints[randomSpawnPoint].position.y;
-            minY = cannonPosition.position.y;
+			//GameObject swarm = new GameObject { name = "Swarm" };
 
-            for (int i = 0; i < columnCount; i++)
-            {
-                var bulletSpawner = Instantiate(bulletSpawnerPrefab);
-                bulletSpawner.transform.SetParent(enemyPrefabs[randomEnemy].transform);
-                bulletSpawner.Setup();
-            }
-        }
+			currentY = spawnPoints[randomSpawnPoint].position.y;
+			minY = cannonPosition.position.y;
 
-        private void Update()
-        {
-            StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
+			for (int i = 0; i < columnCount; i++)
+			{
+				var bulletSpawner = Instantiate(bulletSpawnerPrefab);
+				bulletSpawner.transform.SetParent(enemyPrefabs[randomEnemy].transform);
+				bulletSpawner.Setup();
+			}
+		}
 
-            yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
+		private void Update()
+		{
+			StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
 
-            enemyPrefabs[randomEnemy].transform.Translate(speedFactor * musicControl.Tempo * Time.deltaTime * Vector2.down);
+			yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
 
-            //MoveInvaders(-yDecrement);
+			enemyPrefabs[randomEnemy].transform.Translate(speedFactor * musicControl.Tempo * Time.deltaTime * Vector2.down);
+			Debug.Log(musicControl.Tempo);
+			MoveInvaders();
+			currentY -= yDecrement;
 
-            currentY -= yDecrement;
+			if (currentY < minY)
+			{
+				GameManager.Instance.TriggerGameOver();
+			}
 
-            if (currentY < minY)
-            {
-                GameManager.Instance.TriggerGameOver();
-            }
+		}
 
-        }
+		private void MoveInvaders()
+		{
+			foreach(GameObject enemy in spawnedEnemies)
+			{
+				enemy.transform.Translate(0, -yDecrement, 0);
+			}
+		}
+	}
 
-        private void MoveInvaders(float y)
-        {
-            enemyPrefabs[randomEnemy].transform.Translate(0, y, 0);
-        }
-    }
+
 }
