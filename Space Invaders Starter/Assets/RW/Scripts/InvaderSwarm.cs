@@ -12,7 +12,7 @@ namespace GalaxyDefenders
 		[SerializeField] private BulletSpawner bulletSpawnerPrefab;
 		[SerializeField] private MusicControl musicControl;
 		[SerializeField] private Transform cannonPosition;
-		[SerializeField] private List<GameObject> spawnedEnemies = new List<GameObject>();
+		[SerializeField] public List<GameObject> spawnedEnemies = new List<GameObject>();
 		internal static InvaderSwarm Instance;
 
 		private int columnCount;
@@ -26,6 +26,12 @@ namespace GalaxyDefenders
 		private float currentY;
 		public int randomEnemy;
 		public int randomSpawnPoint;
+		private float minTime=1f;
+		private float maxTime=10f;
+		private float timer;
+		private float currentTime;
+
+		GameObject enemy;
 
 		public IEnumerator SpawnEnemyWave(float n)
 		{
@@ -43,7 +49,7 @@ namespace GalaxyDefenders
 					{
 						randomEnemy = Random.Range(0, enemyPrefabs.Length);
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-						GameObject enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+						enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
 						spawnedEnemies.Add(enemy);
 					}
 					enemyCount = 0;
@@ -58,7 +64,7 @@ namespace GalaxyDefenders
 						randomEnemy = Random.Range(0, enemyPrefabs.Length);
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
 
-						GameObject enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
+						enemy = Instantiate(enemyPrefabs[randomEnemy], spawnPoints[randomSpawnPoint].position, transform.rotation);
 						spawnedEnemies.Add(enemy);
 
 					}
@@ -115,17 +121,8 @@ namespace GalaxyDefenders
 		{
 			xSpacing = Random.Range(25, 30);
 
-			//GameObject swarm = new GameObject { name = "Swarm" };
-
 			currentY = spawnPoints[randomSpawnPoint].position.y;
 			minY = cannonPosition.position.y;
-
-			for (int i = 0; i < columnCount; i++)
-			{
-				var bulletSpawner = Instantiate(bulletSpawnerPrefab);
-				bulletSpawner.transform.SetParent(enemyPrefabs[randomEnemy].transform);
-				bulletSpawner.Setup();
-			}
 		}
 
 		private void Update()
@@ -133,16 +130,29 @@ namespace GalaxyDefenders
 			StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
 
 			yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
-
-			enemyPrefabs[randomEnemy].transform.Translate(speedFactor * musicControl.Tempo * Time.deltaTime * Vector2.down);
-			Debug.Log(musicControl.Tempo);
+			
 			MoveInvaders();
+
 			currentY -= yDecrement;
 
 			if (currentY < minY)
 			{
 				GameManager.Instance.TriggerGameOver();
 			}
+
+			timer += Time.deltaTime;
+			currentTime = Random.Range(minTime, maxTime);
+			if (timer < currentTime)
+			{
+				return;
+			}
+			else
+			{
+				var bulletSpawner = Instantiate(bulletSpawnerPrefab);
+				bulletSpawner.transform.SetParent(enemy.transform);
+				bulletSpawner.Setup();
+			}
+			timer = 0f;
 
 		}
 
@@ -151,6 +161,7 @@ namespace GalaxyDefenders
 			foreach(GameObject enemy in spawnedEnemies)
 			{
 				enemy.transform.Translate(0, -yDecrement, 0);
+				
 			}
 		}
 	}

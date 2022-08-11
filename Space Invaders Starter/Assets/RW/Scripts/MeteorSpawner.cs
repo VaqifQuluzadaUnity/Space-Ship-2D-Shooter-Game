@@ -11,9 +11,12 @@ namespace GalaxyDefenders
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private float speed = 200f;
         [SerializeField] private float lifeTime = 5f;
+        [SerializeField] public List<GameObject> spawnedMeteors = new List<GameObject>();
 
         public int randomMeteor;
         private int randomSpawnPoint;
+
+        GameObject meteor;
 
         IEnumerator SpawnMeteors()
         {
@@ -21,14 +24,15 @@ namespace GalaxyDefenders
             {
                 randomMeteor = Random.Range(0, meteors.Length);
                 randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-                Instantiate(meteors[randomMeteor], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+                meteor=Instantiate(meteors[randomMeteor], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+                spawnedMeteors.Add(meteor);
                 yield return new WaitForSeconds(3f);
             }
         }
 
         internal void DestroySelf()
         {
-            Destroy(meteors[randomMeteor]);
+            Destroy(meteor);
         }
 
         private void Awake()
@@ -43,7 +47,10 @@ namespace GalaxyDefenders
 
         private void Update()
         {
-            transform.Translate(speed * Time.deltaTime * Vector2.down);
+            foreach (GameObject meteor in spawnedMeteors)
+            {
+                meteor.transform.Translate(speed * Time.deltaTime * Vector2.down);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)

@@ -11,9 +11,6 @@ namespace GalaxyDefenders
         private GameObject bulletPrefab;
 
         [SerializeField]
-        private Transform spawnPoint;
-
-        [SerializeField]
         private float minTime;
 
         [SerializeField]
@@ -26,7 +23,12 @@ namespace GalaxyDefenders
         internal void Setup()
         {
             currentTime = Random.Range(minTime, maxTime);
-            followTarget = InvaderSwarm.Instance.enemyPrefabs[InvaderSwarm.Instance.randomEnemy];
+            foreach (GameObject enemy in InvaderSwarm.Instance.spawnedEnemies)
+            {
+                followTarget = enemy;
+                Instantiate(bulletPrefab, enemy.transform.position, Quaternion.identity);
+                GameManager.Instance.PlaySfx(shooting);
+            }
         }
 
         private void Update()
@@ -38,12 +40,13 @@ namespace GalaxyDefenders
             {
                 return;
             }
-
-            Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-            GameManager.Instance.PlaySfx(shooting);
+            else
+            {
+                Setup();
+            }
             timer = 0f;
-            currentTime = Random.Range(minTime, maxTime);
         }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.collider.GetComponent<Bullet>())
@@ -57,8 +60,6 @@ namespace GalaxyDefenders
             InvaderSwarm.Instance.IncreaseDeathCount();
 
             followTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
-
-            Setup();
         }
 
     }
