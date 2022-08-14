@@ -9,7 +9,7 @@ namespace GalaxyDefenders
 		[SerializeField] Transform[] spawnPoints;
 		[SerializeField] public GameObject[] enemyPrefabs;
 		[SerializeField] private float speedFactor = 10f;
-		[SerializeField] private BulletSpawner bulletSpawnerPrefab;
+		[SerializeField] private EnemyBulletSpawner bulletSpawnerPrefab;
 		[SerializeField] private MusicControl musicControl;
 		[SerializeField] private Transform cannonPosition;
 		[SerializeField] public List<GameObject> spawnedEnemies = new List<GameObject>();
@@ -119,6 +119,11 @@ namespace GalaxyDefenders
 
 		private void Start()
 		{
+			/*while(spawnTimeDelay == 3f)
+            {
+				StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
+			}*/
+
 			xSpacing = Random.Range(25, 30);
 
 			currentY = spawnPoints[randomSpawnPoint].position.y;
@@ -127,6 +132,15 @@ namespace GalaxyDefenders
 
 		private void Update()
 		{
+			/*timer += Time.deltaTime;
+			if (timer < spawnTimeDelay)
+			{
+				return;
+			}
+			else
+			{
+				StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
+			}*/
 			StartCoroutine(SpawnEnemyWave(spawnTimeDelay));
 
 			yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
@@ -140,7 +154,7 @@ namespace GalaxyDefenders
 				GameManager.Instance.TriggerGameOver();
 			}
 
-			timer += Time.deltaTime;
+			//timer += Time.deltaTime;
 			currentTime = Random.Range(minTime, maxTime);
 			if (timer < currentTime)
 			{

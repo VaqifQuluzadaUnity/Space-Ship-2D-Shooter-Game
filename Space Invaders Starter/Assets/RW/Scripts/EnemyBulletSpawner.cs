@@ -2,19 +2,12 @@ using UnityEngine;
 
 namespace GalaxyDefenders
 {
-    public class BulletSpawner : MonoBehaviour
+    public class EnemyBulletSpawner : MonoBehaviour
     {
-        [SerializeField]
-        private AudioClip shooting;
-
-        [SerializeField]
-        private GameObject bulletPrefab;
-
-        [SerializeField]
-        private float minTime;
-
-        [SerializeField]
-        private float maxTime;
+        [SerializeField] private AudioClip shooting;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private float minTime;
+        [SerializeField] private float maxTime;
 
         private float timer;
         private float currentTime;
@@ -23,11 +16,12 @@ namespace GalaxyDefenders
         internal void Setup()
         {
             currentTime = Random.Range(minTime, maxTime);
+
             foreach (GameObject enemy in InvaderSwarm.Instance.spawnedEnemies)
             {
                 followTarget = enemy;
                 Instantiate(bulletPrefab, enemy.transform.position, Quaternion.identity);
-                GameManager.Instance.PlaySfx(shooting);
+                SFX_Controller.Instance.PlaySfx(shooting);
             }
         }
 
@@ -54,11 +48,8 @@ namespace GalaxyDefenders
                 return;
             }
 
-            GameManager.Instance.
-                UpdateScore(InvaderSwarm.Instance.GetPoints());
-
+            GameManager.Instance.UpdateScore(InvaderSwarm.Instance.GetPoints());
             InvaderSwarm.Instance.IncreaseDeathCount();
-
             followTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
 

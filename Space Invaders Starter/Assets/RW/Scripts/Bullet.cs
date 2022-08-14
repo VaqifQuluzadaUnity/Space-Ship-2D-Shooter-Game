@@ -5,7 +5,6 @@ namespace GalaxyDefenders
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private float speed = 200f;
-
         [SerializeField] private float lifeTime = 5f;
 
         internal void DestroySelf()
@@ -27,7 +26,7 @@ namespace GalaxyDefenders
         private void OnCollisionEnter2D(Collision2D other)
         {
             DestroySelf();
-            GameManager.Instance.CreateExplosion(transform.position);
+            SFX_Controller.Instance.CreateExplosion(transform.position);
         }
     }
 }

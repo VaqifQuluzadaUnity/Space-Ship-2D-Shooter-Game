@@ -8,10 +8,6 @@ namespace GalaxyDefenders
     {
         internal static GameManager Instance;
 
-        [SerializeField] private AudioSource sfx;
-        [SerializeField] private GameObject explosionPrefab;
-        [SerializeField] private float explosionTime = 1f;
-        [SerializeField] private AudioClip explosionClip;
         [SerializeField] private int maxLives = 3;
         [SerializeField] private Text livesLabel;
         [SerializeField] private MusicControl music;
@@ -29,10 +25,10 @@ namespace GalaxyDefenders
             scoreLabel.text = $"Score: {score}";
         }
 
-        internal void TriggerGameOver(bool failure = true)
+        internal void TriggerGameOver(bool failure=true)
         {
-            gameOver.SetActive(failure);
-            allClear.SetActive(!failure);
+            gameOver.SetActive(!failure);
+            allClear.SetActive(failure);
             restartButton.gameObject.SetActive(true);
 
             Time.timeScale = 0f;
@@ -57,17 +53,6 @@ namespace GalaxyDefenders
 
         }
 
-        internal void CreateExplosion(Vector2 position)
-        {
-            PlaySfx(explosionClip);
-
-            var explosion = Instantiate(explosionPrefab, position,
-                Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f)));
-            Destroy(explosion, explosionTime);
-        }
-
-        internal void PlaySfx(AudioClip clip) => sfx.PlayOneShot(clip);
-
         private void Awake()
         {
             if (Instance == null)
@@ -83,16 +68,6 @@ namespace GalaxyDefenders
             livesLabel.text = $"Lives: {lives}";
             score = 0;
             scoreLabel.text = $"Score: {score}";
-            gameOver.gameObject.SetActive(false);
-            allClear.gameObject.SetActive(false);
-
-            restartButton.onClick.AddListener(() =>
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                Time.timeScale = 1f;
-            });
-            restartButton.gameObject.SetActive(false);
-
         }
     }
 }
