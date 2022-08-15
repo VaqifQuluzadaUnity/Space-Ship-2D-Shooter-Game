@@ -27,8 +27,8 @@ namespace GalaxyDefenders
 
         internal void TriggerGameOver(bool failure=true)
         {
-            gameOver.SetActive(!failure);
-            allClear.SetActive(failure);
+            gameOver.SetActive(failure);
+            allClear.SetActive(!failure);
             restartButton.gameObject.SetActive(true);
 
             Time.timeScale = 0f;

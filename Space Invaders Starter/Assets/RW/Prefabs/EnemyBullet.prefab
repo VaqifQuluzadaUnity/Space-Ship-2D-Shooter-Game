@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: speed
       value: -200
       objectReference: {fileID: 0}
+    - target: {fileID: 1917205289856464130, guid: f7fa5c1eae2e03a48baa9de60893b07c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2247167998187582346, guid: f7fa5c1eae2e03a48baa9de60893b07c,
         type: 3}
       propertyPath: m_Layer
@@ -45,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 8981871960250590097, guid: f7fa5c1eae2e03a48baa9de60893b07c,
         type: 3}
       propertyPath: m_Name
-      value: P_EnemyBullet
+      value: EnemyBullet
       objectReference: {fileID: 0}
     - target: {fileID: 8981871960250590097, guid: f7fa5c1eae2e03a48baa9de60893b07c,
         type: 3}

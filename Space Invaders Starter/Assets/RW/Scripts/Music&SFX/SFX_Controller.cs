@@ -11,6 +11,18 @@ namespace GalaxyDefenders
         [SerializeField] private float explosionTime = 1f;
         [SerializeField] private AudioClip explosionClip;
 
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         internal void CreateExplosion(Vector2 position)
         {
             PlaySfx(explosionClip);

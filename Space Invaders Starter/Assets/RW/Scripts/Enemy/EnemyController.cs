@@ -28,14 +28,12 @@ namespace GalaxyDefenders
             }
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             currentY = EnemySpawner.Instance.spawnPoints[EnemySpawner.Instance.randomSpawnPoint].position.y;
             minY = cannonPosition.position.y;
         }
 
-        // Update is called once per frame
         void Update()
         {
             yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
@@ -46,10 +44,8 @@ namespace GalaxyDefenders
 
             if (currentY < minY)
             {
-                GameManager.Instance.TriggerGameOver();
+                GameManager.Instance.TriggerGameOver(true);
             }
-
-
         }
 
         private void MoveInvaders()
@@ -57,7 +53,6 @@ namespace GalaxyDefenders
             foreach (GameObject enemy in EnemySpawner.Instance.spawnedEnemies)
             {
                 enemy.transform.Translate(0, -yDecrement, 0);
-
             }
         }
     }
