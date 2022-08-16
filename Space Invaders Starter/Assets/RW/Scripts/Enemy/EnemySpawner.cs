@@ -18,7 +18,7 @@ namespace GalaxyDefenders
         public int randomEnemy;
         public int randomSpawnPoint;
         public GameObject enemy;
-        bool spawnTimeDelay = true;
+        //bool spawnTimeDelay = true;
 
         public IEnumerator SpawnEnemyWave()
         {
@@ -76,15 +76,15 @@ namespace GalaxyDefenders
 
         void Start()
         {
-            while(spawnTimeDelay)
+            /*while(spawnTimeDelay)
             {
 				StartCoroutine(SpawnEnemyWave());
-			}
+			}*/
         }
 
         void Update()
         {
-            //StartCoroutine(SpawnEnemyWave());
+            StartCoroutine(SpawnEnemyWave());
 
             /*timer += Time.deltaTime;
             if (timer < spawnTimeDelay)
