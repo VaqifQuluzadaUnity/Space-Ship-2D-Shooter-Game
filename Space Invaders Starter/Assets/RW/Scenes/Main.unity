@@ -3184,7 +3184,6 @@ GameObject:
   - component: {fileID: 753436858}
   - component: {fileID: 753436861}
   - component: {fileID: 753436860}
-  - component: {fileID: 753436859}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -3212,19 +3211,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -18, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &753436859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753436857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!114 &753436860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4285,7 +4271,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28}
+  m_SizeDelta: {x: 0, y: 91.4545}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &863551762
 MonoBehaviour:
@@ -4605,10 +4591,10 @@ RectTransform:
   m_Father: {fileID: 863551761}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 166, y: -44.72725}
+  m_SizeDelta: {x: 332, y: 55.4545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &928442524
 MonoBehaviour:
@@ -4793,7 +4779,7 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523216570}
+      - m_Target: {fileID: 931318804}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0
@@ -4825,7 +4811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &954322326
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4961,7 +4947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &972533579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5700,7 +5686,7 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523216570}
+      - m_Target: {fileID: 1170656567}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0
@@ -5819,7 +5805,7 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523216570}
+      - m_Target: {fileID: 1216976038}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0
@@ -6539,6 +6525,8 @@ MonoBehaviour:
     - m_Text: Azeri
       m_Image: {fileID: 21300000, guid: ff004e51da9bf1247bffd62ea190e474, type: 3}
     - m_Text: Chinese
+      m_Image: {fileID: 21300000, guid: 95ceb6c6ead71f743a4664e845901a82, type: 3}
+    - m_Text: Chinese TR
       m_Image: {fileID: 21300000, guid: 95ceb6c6ead71f743a4664e845901a82, type: 3}
     - m_Text: German
       m_Image: {fileID: 21300000, guid: f6541367bc0f97d40a2f632996e9b308, type: 3}
@@ -7385,7 +7373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778682478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82f8b51481d480f49b8078d43ea1a704, type: 3}
   m_Name: 

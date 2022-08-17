@@ -5,7 +5,7 @@ using UnityEngine;
 public class UI_Controller : MonoBehaviour
 {
     [SerializeField] private GameObject panelEntrance;
-
+  /*
     void Start()
     {
         Time.timeScale = 0;
@@ -19,6 +19,6 @@ public class UI_Controller : MonoBehaviour
         Time.timeScale = 1;
 
     }
-
+  */
     
 }
