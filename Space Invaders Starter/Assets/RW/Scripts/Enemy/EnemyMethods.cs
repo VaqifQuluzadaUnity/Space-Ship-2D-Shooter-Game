@@ -61,7 +61,7 @@ namespace GalaxyDefenders
 
 			GameManager.Instance.UpdateScore(GetPoints());
 			IncreaseDeathCount();
-			EnemySpawner.Instance.enemy.GetComponentInChildren<SpriteRenderer>().enabled = false;
+			EnemySpawner.Instance.enemy.SetActive(false);
 		}
 	}
 }

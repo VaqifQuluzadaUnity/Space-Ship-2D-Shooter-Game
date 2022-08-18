@@ -9,10 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8063930487915442503}
+  - component: {fileID: 1989723241883644482}
+  - component: {fileID: -6735464832908677165}
+  - component: {fileID: 5252873168053921368}
   - component: {fileID: 7024448734221702026}
   - component: {fileID: 3732347739131315977}
   - component: {fileID: 2239154688673873214}
-  - component: {fileID: 1989723241883644482}
+  - component: {fileID: -9170554612037467097}
   m_Layer: 9
   m_Name: enemy 5
   m_TagString: Untagged
@@ -34,6 +37,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989723241883644482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5141123904873660194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5a608581227ca4cbd3f1670308bf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooting: {fileID: 8300000, guid: 9e07fde2c9c9b5947affdecf9b94a051, type: 3}
+  bulletPrefab: {fileID: 7314271257196979617, guid: 5c0976052bf77a64891091ffc17b605c,
+    type: 3}
+  minTime: 1
+  maxTime: 3
+--- !u!114 &-6735464832908677165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5141123904873660194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0733aba61b832c4f9f73a5398779643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannonPosition: {fileID: 0}
+  speedFactor: 10
+  musicControl: {fileID: 0}
+--- !u!114 &5252873168053921368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5141123904873660194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52f71ff23d76b5429221e2d8f95430f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs: []
+  spawnPoints: []
+  spawnedEnemies: []
+  enemyBulletSpawnerPrefab: {fileID: 0}
+  randomEnemy: 0
+  randomSpawnPoint: 0
+  enemy: {fileID: 0}
 --- !u!212 &7024448734221702026
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,7 +187,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25, y: 29}
   m_EdgeRadius: 0
---- !u!114 &1989723241883644482
+--- !u!114 &-9170554612037467097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,11 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5141123904873660194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5a608581227ca4cbd3f1670308bf46, type: 3}
+  m_Script: {fileID: 11500000, guid: 88076c1b934fa884a83ca7e6974e5d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooting: {fileID: 8300000, guid: 9e07fde2c9c9b5947affdecf9b94a051, type: 3}
-  bulletPrefab: {fileID: 7314271257196979617, guid: 5c0976052bf77a64891091ffc17b605c,
-    type: 3}
-  minTime: 1
-  maxTime: 3
+  musicControl: {fileID: 0}
