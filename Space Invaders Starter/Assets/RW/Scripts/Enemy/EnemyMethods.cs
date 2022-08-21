@@ -59,6 +59,7 @@ namespace GalaxyDefenders
 				return;
 			}
 
+			EnemySpawner.Instance.enemyPool.Push(EnemySpawner.Instance.enemy);
 			GameManager.Instance.UpdateScore(GetPoints());
 			IncreaseDeathCount();
 			EnemySpawner.Instance.enemy.SetActive(false);

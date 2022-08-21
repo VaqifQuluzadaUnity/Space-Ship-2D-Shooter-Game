@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DynamicBox.EventManagement;
 
-public class MainMenuController : MonoBehaviour
+public class LevelsController : MonoBehaviour
 {
-	[SerializeField] private MainMenuView view;
+	[SerializeField] private LevelsView view;
 
-	private void OnEnable()
+	/*private void OnEnable()
 	{
 		//EventManager.Instance.AddListener<Event>(EventHandler);
 	}
@@ -17,10 +17,5 @@ public class MainMenuController : MonoBehaviour
 	{
 		//EventManager.Instance.RemoveListener<Event>(EventHandler);
 
-	}
-
-	public void EventHandler(Event eventDetails)
-	{
-		
-	}
+	}*/
 }

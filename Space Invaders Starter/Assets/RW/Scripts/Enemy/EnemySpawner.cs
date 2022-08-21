@@ -9,7 +9,7 @@ namespace GalaxyDefenders
 		[SerializeField] public GameObject[] enemyPrefabs;
 		[SerializeField] public Transform[] spawnPoints;
 		[SerializeField] public List<GameObject> spawnedEnemies = new List<GameObject>();
-		[SerializeField] private Stack<GameObject> enemyPool = new Stack<GameObject>();
+		[SerializeField] public Stack<GameObject> enemyPool = new Stack<GameObject>();
 		[SerializeField] private EnemyBulletSpawner enemyBulletSpawnerPrefab;
 
 		internal static EnemySpawner Instance;
