@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2230867994874483468}
   - component: {fileID: 7506024844771693723}
   - component: {fileID: 4593247798999236343}
-  - component: {fileID: -1243422327796038024}
   - component: {fileID: 7087029477948763159}
   - component: {fileID: 4794374175269495495}
   - component: {fileID: -3732943110327376476}
+  - component: {fileID: -5839151050181184666}
   m_Layer: 9
   m_Name: enemy 10
   m_TagString: Untagged
@@ -68,25 +68,6 @@ MonoBehaviour:
   cannonPosition: {fileID: 0}
   speedFactor: 10
   musicControl: {fileID: 0}
---- !u!114 &-1243422327796038024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624223300775482771}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52f71ff23d76b5429221e2d8f95430f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefabs: []
-  spawnPoints: []
-  spawnedEnemies: []
-  enemyBulletSpawnerPrefab: {fileID: 0}
-  randomEnemy: 0
-  randomSpawnPoint: 0
-  enemy: {fileID: 0}
 --- !u!212 &7087029477948763159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186,3 +167,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 21, y: 23}
   m_EdgeRadius: 0
+--- !u!114 &-5839151050181184666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624223300775482771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88076c1b934fa884a83ca7e6974e5d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicControl: {fileID: 0}

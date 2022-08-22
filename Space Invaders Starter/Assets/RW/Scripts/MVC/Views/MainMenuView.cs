@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//namespace DynamicBox.UI.View
 public class MainMenuView : MonoBehaviour
 {
     [Header("Controller reference")]

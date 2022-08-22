@@ -10,23 +10,9 @@ namespace GalaxyDefenders
         [SerializeField] private float speedFactor = 10f;
         [SerializeField] private MusicControl musicControl;
 
-        internal static EnemyController Instance;
-
         private float currentY;
         private float minY;
         private float yDecrement;
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
 
         void Start()
         {
@@ -55,5 +41,10 @@ namespace GalaxyDefenders
                 enemy.transform.Translate(0, -yDecrement, 0);
             }
         }
+
+    public void SetCannonPos(Transform cannonPos)
+		{
+      cannonPosition = cannonPos;
+		}
     }
 }

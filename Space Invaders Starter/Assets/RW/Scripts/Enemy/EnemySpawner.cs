@@ -11,7 +11,7 @@ namespace GalaxyDefenders
 		[SerializeField] public List<GameObject> spawnedEnemies = new List<GameObject>();
 		[SerializeField] public Stack<GameObject> enemyPool = new Stack<GameObject>();
 		[SerializeField] private EnemyBulletSpawner enemyBulletSpawnerPrefab;
-
+		[SerializeField] private Transform cannonPos;
 		internal static EnemySpawner Instance;
 
 		private int columnCount;
@@ -50,11 +50,14 @@ namespace GalaxyDefenders
 
 					for (int i = 0; i < columnCount; i++)
 					{
+						
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						Debug.Log(enemyPool.Count);
 						enemy = enemyPool.Pop();
+						spawnedEnemies.Add(enemy);
 						enemy.transform.position = spawnPoints[randomSpawnPoint].position;
 						enemy.SetActive(true);
-						spawnedEnemies.Add(enemy);
+						
 					}
 					yield return new WaitForSeconds(3f);
 					StartCoroutine(SpawnEnemyWave());
@@ -72,7 +75,8 @@ namespace GalaxyDefenders
 			if (enemyPool.Count < 200)
 			{
 				int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
-				enemy = Instantiate(enemyPrefabs[randomEnemyIndex]);
+				enemy = Instantiate(enemyPrefabs[randomEnemyIndex],transform);
+				enemy.GetComponent<EnemyController>().SetCannonPos(cannonPos);
 				enemy.SetActive(false);
 				enemyPool.Push(enemy);
 			}

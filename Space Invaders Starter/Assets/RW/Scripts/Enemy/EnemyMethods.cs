@@ -13,19 +13,8 @@ namespace GalaxyDefenders
 		private int enemyCount = 20;
 		private int tempKillCount;
 
-		internal static EnemyMethods Instance;
 
-		private void Awake()
-		{
-			if (Instance == null)
-			{
-				Instance = this;
-			}
-			else if (Instance != this)
-			{
-				Destroy(gameObject);
-			}
-		}
+
 
 		internal void IncreaseDeathCount()
 		{
@@ -54,15 +43,15 @@ namespace GalaxyDefenders
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
+
 			if (!other.collider.GetComponent<Bullet>())
 			{
 				return;
 			}
-
-			EnemySpawner.Instance.enemyPool.Push(EnemySpawner.Instance.enemy);
+			gameObject.SetActive(false);
+			EnemySpawner.Instance.enemyPool.Push(gameObject);
 			GameManager.Instance.UpdateScore(GetPoints());
 			IncreaseDeathCount();
-			EnemySpawner.Instance.enemy.SetActive(false);
 		}
 	}
 }
