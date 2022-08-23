@@ -17,11 +17,13 @@ namespace GalaxyDefenders
         {
             if (source.pitch == maxPitch)
             {
+                Debug.Log("3");
                 return;
             }
 
             source.pitch = Mathf.Clamp(source.pitch + pitchChange, 1, maxPitch);
             Tempo = Mathf.Pow(2, pitchChange) * Tempo;
+            Debug.Log("4");
         }
 
         private void Start()
@@ -29,6 +31,7 @@ namespace GalaxyDefenders
             source.pitch = 1f;
             Tempo = defaultTempo;
             pitchChange = maxPitch / pitchChangeSteps;
+            Debug.Log("5");
         }
 
     }

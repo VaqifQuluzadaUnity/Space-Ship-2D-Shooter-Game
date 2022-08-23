@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5904135608818419119}
   - component: {fileID: -8871762639249385210}
   - component: {fileID: -2707020975938262251}
+  - component: {fileID: 5121489348226619229}
   - component: {fileID: 8151483271520065395}
   - component: {fileID: 8907423344688939703}
   - component: {fileID: 8408529379953554112}
-  - component: {fileID: 5121489348226619229}
   m_Layer: 9
   m_Name: enemy 13
   m_TagString: Untagged
@@ -60,13 +60,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490417143031434276}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0733aba61b832c4f9f73a5398779643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cannonPosition: {fileID: 0}
   speedFactor: 10
+  musicControl: {fileID: 0}
+--- !u!114 &5121489348226619229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490417143031434276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88076c1b934fa884a83ca7e6974e5d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   musicControl: {fileID: 0}
 --- !u!212 &8151483271520065395
 SpriteRenderer:
@@ -167,16 +180,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 29.2, y: 26.25}
   m_EdgeRadius: 0
---- !u!114 &5121489348226619229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490417143031434276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88076c1b934fa884a83ca7e6974e5d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicControl: {fileID: 0}

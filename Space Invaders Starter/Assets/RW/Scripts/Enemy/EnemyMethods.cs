@@ -13,7 +13,10 @@ namespace GalaxyDefenders
 		private int enemyCount = 20;
 		private int tempKillCount;
 
-
+		public void SetMusic(MusicControl music)
+		{
+			musicControl = music;
+		}
 
 
 		internal void IncreaseDeathCount()
@@ -25,14 +28,18 @@ namespace GalaxyDefenders
 				return;
 			}
 			tempKillCount++;
-
-			if (tempKillCount < enemyCount / musicControl.pitchChangeSteps)
+			
+			if (tempKillCount < (enemyCount / musicControl.pitchChangeSteps))
 			{
+				Debug.Log("1");
 				return;
 			}
-			musicControl.IncreasePitch();
-
-			tempKillCount = 0;
+            else
+            {
+				musicControl.IncreasePitch();
+				Debug.Log("2");
+				tempKillCount = 0;
+			}
 		}
 
 		internal int GetPoints()

@@ -12,18 +12,20 @@ namespace GalaxyDefenders
 		[SerializeField] public Stack<GameObject> enemyPool = new Stack<GameObject>();
 		[SerializeField] private EnemyBulletSpawner enemyBulletSpawnerPrefab;
 		[SerializeField] private Transform cannonPos;
+		[SerializeField] private MusicControl music;
+
 		internal static EnemySpawner Instance;
 
 		private int columnCount;
 		private int enemyCount = 20;
 		public int randomEnemy;
 		public int randomSpawnPoint;
-		public GameObject enemy;
+		private GameObject enemy;
 		//bool spawnTimeDelay = true;
 
 		public IEnumerator SpawnEnemyWave()
 		{
-			columnCount = Random.Range(5, 10);
+			columnCount = Random.Range(1, 6);
 
 			yield return new WaitForSeconds(5f);
 
@@ -52,7 +54,6 @@ namespace GalaxyDefenders
 					{
 						
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-						Debug.Log(enemyPool.Count);
 						enemy = enemyPool.Pop();
 						spawnedEnemies.Add(enemy);
 						enemy.transform.position = spawnPoints[randomSpawnPoint].position;
@@ -76,7 +77,11 @@ namespace GalaxyDefenders
 			{
 				int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
 				enemy = Instantiate(enemyPrefabs[randomEnemyIndex],transform);
+
 				enemy.GetComponent<EnemyController>().SetCannonPos(cannonPos);
+				enemy.GetComponent<EnemyController>().SetMusic(music);
+				enemy.GetComponent<EnemyMethods>().SetMusic(music);
+
 				enemy.SetActive(false);
 				enemyPool.Push(enemy);
 			}
@@ -97,7 +102,7 @@ namespace GalaxyDefenders
 		void Start()
 		{
 			StartCoroutine(SpawnEnemyWave());
-
+			
 			InvokeRepeating("CheckPool", 0, 0.05f);
 		}
 	}

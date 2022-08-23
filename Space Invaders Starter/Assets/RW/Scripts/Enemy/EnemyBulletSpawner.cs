@@ -17,7 +17,7 @@ namespace GalaxyDefenders
             currentTime = Random.Range(minTime, maxTime);
 
             Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            //SFX_Controller.Instance.PlaySfx(shooting);
+            SFX_Controller.Instance.PlaySfx(shooting);
         }
 
         private void Update()

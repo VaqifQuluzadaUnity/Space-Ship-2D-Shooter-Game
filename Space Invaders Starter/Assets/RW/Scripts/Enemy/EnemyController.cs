@@ -16,7 +16,7 @@ namespace GalaxyDefenders
 
         void Start()
         {
-            currentY = EnemySpawner.Instance.spawnPoints[EnemySpawner.Instance.randomSpawnPoint].position.y;
+            currentY = gameObject.transform.position.y;
             minY = cannonPosition.position.y;
         }
 
@@ -28,23 +28,27 @@ namespace GalaxyDefenders
 
             currentY -= yDecrement;
 
-            if (currentY < minY)
+            if (gameObject.transform.position.y < -170)
             {
                 GameManager.Instance.TriggerGameOver(true);
+                Debug.Log("1");
             }
         }
 
         private void MoveInvaders()
         {
-            foreach (GameObject enemy in EnemySpawner.Instance.spawnedEnemies)
-            {
-                enemy.transform.Translate(0, -yDecrement, 0);
-            }
+            gameObject.transform.Translate(0, -yDecrement, 0);
+
         }
 
-    public void SetCannonPos(Transform cannonPos)
-		{
-      cannonPosition = cannonPos;
-		}
+        public void SetCannonPos(Transform cannonPos)
+        {
+            cannonPosition = cannonPos;
+        }
+
+        public void SetMusic(MusicControl music)
+        {
+            musicControl = music;
+        }
     }
 }
