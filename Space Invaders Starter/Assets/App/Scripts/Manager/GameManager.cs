@@ -13,17 +13,25 @@ namespace GalaxyDefenders.Managers
         [SerializeField] private Text livesLabel;
         [SerializeField] private MusicControl music;
         [SerializeField] private Text scoreLabel;
+        [SerializeField] private Text highScoreLabel;
         [SerializeField] private GameObject gameOver;
         [SerializeField] private GameObject allClear;
         [SerializeField] private Button restartButton;
 
         private int lives;
         private int score;
+        private int bestScore;
 
         internal void UpdateScore(int value)
         {
             score += value;
             scoreLabel.text = $"Score: {score}";
+        }
+
+        internal void UpdateBestScore(int value)
+        {
+            bestScore += value;
+            highScoreLabel.text = $"Score: {bestScore}";
         }
 
         internal void TriggerGameOver(bool failure=true)

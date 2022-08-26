@@ -80,7 +80,6 @@ namespace GalaxyDefenders.Spawners
 				int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
 				enemy = Instantiate(enemyPrefabs[randomEnemyIndex],transform);
 
-				enemy.GetComponent<EnemyController>().SetCannonPos(cannonPos);
 				enemy.GetComponent<EnemyController>().SetMusic(music);
 
 				enemy.SetActive(false);
