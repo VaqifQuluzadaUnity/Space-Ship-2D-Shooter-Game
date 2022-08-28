@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6539442291072730008}
   - component: {fileID: 6882700143886359259}
   - component: {fileID: 7160798684069027156}
-  - component: {fileID: 6689304991134204392}
   - component: {fileID: 4912954916488834633}
   - component: {fileID: 3346082312844310580}
   - component: {fileID: -7811986610712789339}
@@ -65,21 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0733aba61b832c4f9f73a5398779643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonPosition: {fileID: 0}
   speedFactor: 10
-  musicControl: {fileID: 0}
---- !u!114 &6689304991134204392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110147623783358276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88076c1b934fa884a83ca7e6974e5d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   musicControl: {fileID: 0}
 --- !u!212 &4912954916488834633
 SpriteRenderer:

@@ -24,7 +24,7 @@ public class UIDataSaver : MonoBehaviour
 		{
 			UIData oldUIData = saveManager.LoadFromFile<UIData>(containerName, null);
 
-			EventManager.Instance.Raise(new UIDataExistedEvent(uiData));
+			EventManager.Instance.Raise(new UIDataExistedEvent(oldUIData));
 		}
 	}
 

@@ -10,47 +10,56 @@ namespace GalaxyDefenders.Spawners
     {
         [SerializeField] private GameObject[] meteors;
         [SerializeField] private Transform[] spawnPoints;
-        [SerializeField] private float speed = 200f;
         [SerializeField] public List<GameObject> spawnedMeteors = new List<GameObject>();
+        [SerializeField] public Stack<GameObject> meteorPool = new Stack<GameObject>();
 
-        public int randomMeteor;
+        internal static MeteorSpawner Instance;
+
         private int randomSpawnPoint;
-
-        GameObject meteor;
+        private GameObject meteor;
 
         IEnumerator SpawnMeteors()
         {
-            for (int i = 0; i < 6; i++)
-            {
-                randomMeteor = Random.Range(0, meteors.Length);
-                randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-                meteor = Instantiate(meteors[randomMeteor], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-                spawnedMeteors.Add(meteor);
-                //Destroy(meteor, 5f);
-                yield return new WaitForSeconds(3f);
-            }
+            yield return new WaitForSeconds(3f);
+
+            randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+
+            meteor = meteorPool.Pop();
+            meteor.transform.position = spawnPoints[randomSpawnPoint].position;
+            meteor.SetActive(true);
+            spawnedMeteors.Add(meteor);
+
+            //yield return new WaitForSeconds(3f);
+            StartCoroutine(SpawnMeteors());
+
         }
 
         private void Start()
         {
             StartCoroutine(SpawnMeteors());
+            InvokeRepeating("CheckPool", 0, 0.05f);
         }
 
-        private void Update()
+        private void CheckPool()
         {
-            foreach (GameObject meteor in spawnedMeteors)
+            if (meteorPool.Count < 200)
             {
-                meteor.transform.Translate(speed * Time.deltaTime * Vector2.down);
-                Destroy(meteor, 5f);
+                int randomMeteor = Random.Range(0, meteors.Length);
+                meteor = Instantiate(meteors[randomMeteor], transform);
+                meteor.SetActive(false);
+                meteorPool.Push(meteor);
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D otherCollider)
+        private void Awake()
         {
-            if (otherCollider.gameObject.CompareTag("Hero"))
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
             {
                 Destroy(gameObject);
-                SFX_Controller.Instance.CreateExplosion(transform.position);
             }
         }
     }
