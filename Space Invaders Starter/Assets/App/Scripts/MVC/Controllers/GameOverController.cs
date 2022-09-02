@@ -3,11 +3,11 @@ using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.MVC
 {
-	public class GameOverController : MonoBehaviour
-	{
-		[SerializeField] private MainMenuView view;
+    public class GameOverController : MonoBehaviour
+    {
+        [SerializeField] private MainMenuView view;
 
-		/*private void OnEnable()
+        /*private void OnEnable()
 		{
 			//EventManager.Instance.AddListener<Event>(EventHandler);
 		}
@@ -18,5 +18,10 @@ namespace GalaxyDefenders.MVC
 			//EventManager.Instance.RemoveListener<Event>(EventHandler);
 
 		}*/
-	}
+
+        public void Restart()
+        {
+
+        }
+    }
 }

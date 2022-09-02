@@ -8,7 +8,7 @@ namespace GalaxyDefenders.MVC
     {
         [SerializeField] private UIView view;
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
             EventManager.Instance.AddListener<UIEvent>(UIEventHandler);
         }
@@ -26,7 +26,7 @@ namespace GalaxyDefenders.MVC
         public void UIEventHandler(UIEvent eventdetails)
         {
             GameManager.Instance.UpdateScore(eventdetails.Points);
-            GameManager.Instance.UpdateBestScore(eventdetails.BestPoints);
-        }
+            //GameManager.Instance.UpdateBestScore(eventdetails.BestPoints);
+        }*/
     }
 }

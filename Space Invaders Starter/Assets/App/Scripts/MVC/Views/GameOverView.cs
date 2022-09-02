@@ -8,5 +8,11 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private GameOverController controller;
 
         //[Header("View references")]
+
+        public void Restart()
+        {
+            //Load Scene
+            controller.Restart();
+        }
     }
 }

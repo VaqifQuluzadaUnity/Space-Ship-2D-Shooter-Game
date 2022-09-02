@@ -2,14 +2,12 @@ using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.MVC
 {
-    public class UIEvent : GameEvent
+    public class HighScoreEvent : GameEvent
     {
-        public int Points;
         public int BestPoints;
 
-        public UIEvent(int points, int bestPoints)
+        public HighScoreEvent(int bestPoints)
         {
-            Points = points;
             BestPoints = bestPoints;
         }
     }

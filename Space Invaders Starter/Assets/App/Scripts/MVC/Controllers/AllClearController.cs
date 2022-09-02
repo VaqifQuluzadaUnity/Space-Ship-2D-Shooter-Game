@@ -7,16 +7,9 @@ namespace GalaxyDefenders.MVC
 	{
 		[SerializeField] private AllClearView view;
 
-		/*private void OnEnable()
-		{
-			//EventManager.Instance.AddListener<Event>(EventHandler);
+		public void NextLevel()
+        {
+			EventManager.Instance.Raise(new NextLevelEvent());
 		}
-
-
-		private void OnDisable()
-		{
-			//EventManager.Instance.RemoveListener<Event>(EventHandler);
-
-		}*/
 	}
 }

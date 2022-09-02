@@ -3,6 +3,7 @@ using GalaxyDefenders.Music_SFX;
 using GalaxyDefenders.Managers;
 using GalaxyDefenders.Spawners;
 using GalaxyDefenders.MVC;
+using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.Controllers
 {
@@ -46,8 +47,9 @@ namespace GalaxyDefenders.Controllers
             }
             gameObject.SetActive(false);
             EnemySpawner.Instance.enemyPool.Push(gameObject);
-            UIView.Instance.GetPoints();
-            MusicControl.Instance.IncreaseDeathCount();
+            EventManager.Instance.Raise(new ScoreEvent(Random.Range(3, 6)));
+            //UIView.Instance.GetPoints();
+           MusicControl.Instance.IncreaseDeathCount();
         }
     }
 }

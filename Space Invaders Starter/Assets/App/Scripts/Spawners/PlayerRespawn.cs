@@ -14,6 +14,7 @@ namespace GalaxyDefenders.Spawners
         private void OnCollisionEnter2D(Collision2D other)
         {
             GameManager.Instance.UpdateLives();
+            Vibrator.Vibrate();
             StopAllCoroutines();
             StartCoroutine(Respawn());
         }

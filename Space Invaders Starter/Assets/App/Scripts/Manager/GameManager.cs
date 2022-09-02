@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using GalaxyDefenders.Music_SFX;
+using DynamicBox.EventManagement;
+using GalaxyDefenders.MVC;
 
 namespace GalaxyDefenders.Managers
 {
@@ -21,6 +23,44 @@ namespace GalaxyDefenders.Managers
         private int lives;
         private int score;
         private int bestScore;
+        private int points = 0;
+        private int bestPoints = 0;
+
+        public void GetPoints()
+        {
+            points++;
+        }
+
+        public void GetBestPoints()
+        {
+            if (bestPoints < points)
+            {
+                bestPoints = points;
+                EventManager.Instance.Raise(new UIDataEvent(bestPoints));
+            }
+        }
+
+        private void OnEnable()
+        {
+            EventManager.Instance.AddListener<ScoreEvent>(ScoreEventHandler);
+            EventManager.Instance.AddListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.RemoveListener<ScoreEvent>(ScoreEventHandler);
+            EventManager.Instance.RemoveListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+        }
+
+        public void ScoreEventHandler(ScoreEvent eventdetails)
+        {
+            UpdateScore(eventdetails.Points);
+        }
+
+        public void UIDataExistedEventHandler(UIDataExistedEvent eventdetails)
+        {
+            UpdateBestScore(eventdetails.uiData);
+        }
 
         internal void UpdateScore(int value)
         {
@@ -28,9 +68,9 @@ namespace GalaxyDefenders.Managers
             scoreLabel.text = $"Score: {score}";
         }
 
-        internal void UpdateBestScore(int value)
+        internal void UpdateBestScore(UIData uiData)
         {
-            bestScore += value;
+            bestScore = uiData.bestScore;
             highScoreLabel.text = $"Score: {bestScore}";
         }
 

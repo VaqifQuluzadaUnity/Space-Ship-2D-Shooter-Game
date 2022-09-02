@@ -53,5 +53,10 @@ namespace GalaxyDefenders.MVC
             controller.Instructions();
             shopMenu.SetActive(true);
         }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }
