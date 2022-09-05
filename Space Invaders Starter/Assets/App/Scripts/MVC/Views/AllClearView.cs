@@ -30,8 +30,8 @@ namespace GalaxyDefenders.MVC
 
 		private void LevelDataEventHandler(LevelDataEvent eventDetails)
 		{
-			image.SetActive(false);
-			nextLevel.IsInteractible(true);
+			image.gameObject.SetActive(false);
+			nextLevel.interactable=true;
 		}
 	}
 }

@@ -44,8 +44,8 @@ public class LevelsDataSaveManager : MonoBehaviour
 
 	private void NextLevelEventHandler(NextLevelEvent eventDetails)
 	{
-		image.SetActive(false);
-		nextLevel.IsInteractible(true);
+		image.gameObject.SetActive(false);
+		nextLevel.interactable=true;
 
 		saveManager.SaveToFile<LevelData>(null, containerName);
 	}

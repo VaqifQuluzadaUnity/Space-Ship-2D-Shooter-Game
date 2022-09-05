@@ -42,6 +42,11 @@ public class UIDataSaver : MonoBehaviour
 
 	private void UIDataEventHandler(UIDataEvent eventDetails)
 	{
+
+		Debug.Log("Score data saved");
+
+		Debug.Log(eventDetails.bestScore);
+
 		UIData newUIData = new UIData(eventDetails.bestScore);
 
 		saveManager.SaveToFile<UIData>(newUIData, containerName);

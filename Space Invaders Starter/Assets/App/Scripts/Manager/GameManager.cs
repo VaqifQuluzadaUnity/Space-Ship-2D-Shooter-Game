@@ -1,120 +1,123 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿using DynamicBox.EventManagement;
 using GalaxyDefenders.Music_SFX;
-using DynamicBox.EventManagement;
 using GalaxyDefenders.MVC;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace GalaxyDefenders.Managers
 {
-    public class GameManager : MonoBehaviour
-    {
-        internal static GameManager Instance;
+	public class GameManager : MonoBehaviour
+	{
+		internal static GameManager Instance;
 
-        [SerializeField] private int maxLives = 3;
-        [SerializeField] private Text livesLabel;
-        [SerializeField] private MusicControl music;
-        [SerializeField] private Text scoreLabel;
-        [SerializeField] private Text highScoreLabel;
-        [SerializeField] private GameObject gameOver;
-        [SerializeField] private GameObject allClear;
-        [SerializeField] private Button restartButton;
+		[SerializeField] private int maxLives = 3;
+		[SerializeField] private Text livesLabel;
+		[SerializeField] private MusicControl music;
+		[SerializeField] private Text scoreLabel;
+		[SerializeField] private Text highScoreLabel;
+		[SerializeField] private GameObject gameOver;
+		[SerializeField] private GameObject allClear;
+		[SerializeField] private Button restartButton;
 
-        private int lives;
-        private int score;
-        private int bestScore;
-        private int points = 0;
-        private int bestPoints = 0;
+		private int lives;
+		private int score;
+		private int bestScore;
+		private int points = 0;
+		private int bestPoints = 0;
 
-        public void GetPoints()
-        {
-            points++;
-        }
+		public void GetPoints()
+		{
+			points++;
+		}
 
-        public void GetBestPoints()
-        {
-            if (bestPoints < points)
-            {
-                bestPoints = points;
-                EventManager.Instance.Raise(new UIDataEvent(bestPoints));
-            }
-        }
+		public void GetBestPoints()
+		{
 
-        private void OnEnable()
-        {
-            EventManager.Instance.AddListener<ScoreEvent>(ScoreEventHandler);
-            EventManager.Instance.AddListener<UIDataExistedEvent>(UIDataExistedEventHandler);
-        }
+			Debug.Log("Score is written");
 
-        private void OnDisable()
-        {
-            EventManager.Instance.RemoveListener<ScoreEvent>(ScoreEventHandler);
-            EventManager.Instance.RemoveListener<UIDataExistedEvent>(UIDataExistedEventHandler);
-        }
+			if (bestPoints <= score)
+			{
+				bestPoints = points;
+				EventManager.Instance.Raise(new UIDataEvent(score));
+			}
+		}
 
-        public void ScoreEventHandler(ScoreEvent eventdetails)
-        {
-            UpdateScore(eventdetails.Points);
-        }
+		private void OnEnable()
+		{
+			EventManager.Instance.AddListener<ScoreEvent>(ScoreEventHandler);
+			EventManager.Instance.AddListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+		}
 
-        public void UIDataExistedEventHandler(UIDataExistedEvent eventdetails)
-        {
-            UpdateBestScore(eventdetails.uiData);
-        }
+		private void OnDisable()
+		{
+			EventManager.Instance.RemoveListener<ScoreEvent>(ScoreEventHandler);
+			EventManager.Instance.RemoveListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+		}
 
-        internal void UpdateScore(int value)
-        {
-            score += value;
-            scoreLabel.text = $"Score: {score}";
-        }
+		public void ScoreEventHandler(ScoreEvent eventdetails)
+		{
+			UpdateScore(eventdetails.Points);
+		}
 
-        internal void UpdateBestScore(UIData uiData)
-        {
-            bestScore = uiData.bestScore;
-            highScoreLabel.text = $"Score: {bestScore}";
-        }
+		public void UIDataExistedEventHandler(UIDataExistedEvent eventdetails)
+		{
+			UpdateBestScore(eventdetails.uiData);
+		}
 
-        internal void TriggerGameOver(bool failure=true)
-        {
-            gameOver.SetActive(failure);
-            allClear.SetActive(!failure);
-            restartButton.gameObject.SetActive(true);
+		internal void UpdateScore(int value)
+		{
+			score += value;
+			scoreLabel.text = $"Score: {score}";
+		}
 
-            Time.timeScale = 0f;
-            music.StopPlaying();
-        }
+		internal void UpdateBestScore(UIData uiData)
+		{
+			bestScore = uiData.bestScore;
+			highScoreLabel.text = $"High Score: {bestScore}";
+		}
 
-        internal void AddLives()
-        {
-            lives++;
-        }
+		internal void TriggerGameOver(bool failure = true)
+		{
+			GetBestPoints();
+			gameOver.SetActive(failure);
+			allClear.SetActive(!failure);
+			restartButton.gameObject.SetActive(true);
 
-        internal void UpdateLives()
-        {
-            lives--;
-            livesLabel.text = $"Lives: {lives}";
-            if (lives > 0)
-            {
-                return;
-            }
-            TriggerGameOver();
-        }
+			Time.timeScale = 0f;
+			music.StopPlaying();
+		}
 
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
+		internal void AddLives()
+		{
+			lives++;
+		}
 
-            lives = maxLives;
-            livesLabel.text = $"Lives: {lives}";
-            score = 0;
-            scoreLabel.text = $"Score: {score}";
-        }
-    }
+		internal void UpdateLives()
+		{
+			lives--;
+			livesLabel.text = $"Lives: {lives}";
+			if (lives > 0)
+			{
+				return;
+			}
+			TriggerGameOver();
+		}
+
+		private void Awake()
+		{
+			if (Instance == null)
+			{
+				Instance = this;
+			}
+			else if (Instance != this)
+			{
+				Destroy(gameObject);
+			}
+
+			lives = maxLives;
+			livesLabel.text = $"Lives: {lives}";
+			score = 0;
+			scoreLabel.text = $"Score: {score}";
+		}
+	}
 }
