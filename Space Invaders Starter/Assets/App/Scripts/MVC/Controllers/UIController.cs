@@ -10,23 +10,17 @@ namespace GalaxyDefenders.MVC
 
         /*private void OnEnable()
         {
-            EventManager.Instance.AddListener<UIEvent>(UIEventHandler);
+            EventManager.Instance.AddListener<Event>(EventHandler);
         }
 
         private void OnDisable()
         {
-            EventManager.Instance.RemoveListener<UIEvent>(UIEventHandler);
+            EventManager.Instance.RemoveListener<Event>(EventHandler);
         }
 
-        public void UI(int Points,int BestPoints)
+        public void EventHandler(Event eventdetails)
         {
-            EventManager.Instance.Raise(new UIEvent(Points, BestPoints));
-        }
-
-        public void UIEventHandler(UIEvent eventdetails)
-        {
-            GameManager.Instance.UpdateScore(eventdetails.Points);
-            //GameManager.Instance.UpdateBestScore(eventdetails.BestPoints);
+            
         }*/
     }
 }

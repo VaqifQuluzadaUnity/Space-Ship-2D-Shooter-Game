@@ -48,7 +48,6 @@ namespace GalaxyDefenders.Controllers
             gameObject.SetActive(false);
             EnemySpawner.Instance.enemyPool.Push(gameObject);
             EventManager.Instance.Raise(new ScoreEvent(Random.Range(3, 6)));
-            //UIView.Instance.GetPoints();
            MusicControl.Instance.IncreaseDeathCount();
         }
     }

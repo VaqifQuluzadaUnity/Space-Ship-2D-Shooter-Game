@@ -22,22 +22,15 @@ namespace GalaxyDefenders.Managers
 		private int lives;
 		private int score;
 		private int bestScore;
-		private int points = 0;
-		private int bestPoints = 0;
-
-		public void GetPoints()
-		{
-			points++;
-		}
 
 		public void GetBestPoints()
 		{
 
 			Debug.Log("Score is written");
 
-			if (bestPoints <= score)
+			if (bestScore <= score)
 			{
-				bestPoints = points;
+				bestScore = score;
 				EventManager.Instance.Raise(new UIDataEvent(score));
 			}
 		}

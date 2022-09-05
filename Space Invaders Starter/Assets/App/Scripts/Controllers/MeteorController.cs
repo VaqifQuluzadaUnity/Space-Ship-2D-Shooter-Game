@@ -15,12 +15,6 @@ namespace GalaxyDefenders.Controllers
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Hero"))
-            {
-                gameObject.SetActive(false);
-                MeteorSpawner.Instance.meteorPool.Push(gameObject);
-                SFX_Controller.Instance.CreateExplosion(transform.position);
-            }
             if (other.collider.GetComponent<Bullet>())
             {
                 gameObject.SetActive(false);
