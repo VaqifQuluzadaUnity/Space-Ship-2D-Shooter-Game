@@ -9,6 +9,7 @@ namespace GalaxyDefenders.MVC
 
         [Header("View references")]
         [SerializeField] private GameObject view;
+        [SerializeField] private GameObject ui;
         [SerializeField] private GameObject instructions;
         [SerializeField] private GameObject options;
         [SerializeField] private GameObject levels;
@@ -24,6 +25,7 @@ namespace GalaxyDefenders.MVC
             view.SetActive(false);
             controller.Play();
             Time.timeScale = 1;
+            ui.SetActive(true);
         }
 
         public void Instructions()

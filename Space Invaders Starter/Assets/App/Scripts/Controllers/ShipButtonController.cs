@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using DynamicBox.EventManagement;
+using GalaxyDefenders.Spawners;
 
 namespace GalaxyDefenders.Controllers
 {
     public class ShipButtonController : MonoBehaviour
     {
         [SerializeField] Image shipIconImage;
-        [SerializeField] GameObject CannonSprite;
         [SerializeField] private Text shipPriceText;
         [SerializeField] private Button buyOrSelectButton;
         [SerializeField] private Text buyOrSelectButtonText;
@@ -63,7 +64,9 @@ namespace GalaxyDefenders.Controllers
             buyOrSelectButton.interactable = false;
             buyOrSelectButtonText.text = "Selected";
 
-            CannonSprite.GetComponent<SpriteRenderer>().sprite = shipData.ReturnItemSprite();
+            GameObject player = GameObject.Find("Player");
+            player.GetComponent<PlayerRespawn>().SetShipData(shipData);
+            EventManager.Instance.Raise(new ChangePlayerShipEvent());
         }
 
         public void DeselectItem()

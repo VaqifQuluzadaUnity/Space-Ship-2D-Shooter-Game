@@ -29,7 +29,6 @@ namespace GalaxyDefenders.Spawners
             meteor.SetActive(true);
             spawnedMeteors.Add(meteor);
 
-            //yield return new WaitForSeconds(3f);
             StartCoroutine(SpawnMeteors());
 
         }

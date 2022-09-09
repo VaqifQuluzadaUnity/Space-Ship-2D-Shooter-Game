@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GalaxyDefenders.MVC
 {
@@ -7,11 +8,12 @@ namespace GalaxyDefenders.MVC
         [Header("Controller reference")]
         [SerializeField] private GameOverController controller;
 
-        //[Header("View references")]
+        [Header("View references")]
+        [SerializeField] private string sceneName;
 
         public void Restart()
         {
-            //Load Scene
+            SceneManager.LoadScene(sceneName);
             controller.Restart();
         }
     }

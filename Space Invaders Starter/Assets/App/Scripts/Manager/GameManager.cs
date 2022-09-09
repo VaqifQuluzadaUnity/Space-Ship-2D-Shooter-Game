@@ -3,6 +3,7 @@ using GalaxyDefenders.Music_SFX;
 using GalaxyDefenders.MVC;
 using UnityEngine;
 using UnityEngine.UI;
+using GalaxyDefenders.Data;
 
 namespace GalaxyDefenders.Managers
 {
@@ -17,7 +18,6 @@ namespace GalaxyDefenders.Managers
 		[SerializeField] private Text highScoreLabel;
 		[SerializeField] private GameObject gameOver;
 		[SerializeField] private GameObject allClear;
-		[SerializeField] private Button restartButton;
 
 		private int lives;
 		private int score;
@@ -25,9 +25,6 @@ namespace GalaxyDefenders.Managers
 
 		public void GetBestPoints()
 		{
-
-			Debug.Log("Score is written");
-
 			if (bestScore <= score)
 			{
 				bestScore = score;
@@ -74,7 +71,6 @@ namespace GalaxyDefenders.Managers
 			GetBestPoints();
 			gameOver.SetActive(failure);
 			allClear.SetActive(!failure);
-			restartButton.gameObject.SetActive(true);
 
 			Time.timeScale = 0f;
 			music.StopPlaying();

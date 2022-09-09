@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GalaxyDefenders.Managers; 
+using GalaxyDefenders.Managers;
+using DynamicBox.EventManagement;
+using GalaxyDefenders.Controllers;
 
 namespace GalaxyDefenders.Spawners
 {
@@ -10,6 +12,7 @@ namespace GalaxyDefenders.Spawners
         [SerializeField] private Collider2D cannonCollider;
         [SerializeField] private float respawnTime = 2f;
         [SerializeField] private SpriteRenderer sprite;
+        [SerializeField] ShopItemSO shipData;
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -41,6 +44,28 @@ namespace GalaxyDefenders.Spawners
             var color = sprite.color;
             color.a = value;
             sprite.color = color;
+        }
+
+        public void SetShipData(ShopItemSO _shipData)
+        {
+
+            shipData = _shipData;
+        }
+
+        private void OnEnable()
+        {
+            EventManager.Instance.AddListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
+        }
+
+
+        private void OnDisable()
+        {
+            EventManager.Instance.RemoveListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
+        }
+
+        private void ChangePlayerShipEventHandler(ChangePlayerShipEvent eventdetails)
+        {
+            sprite.sprite = shipData.ReturnItemSprite();
         }
     }
 }

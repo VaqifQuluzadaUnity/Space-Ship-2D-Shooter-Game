@@ -7,9 +7,5 @@ namespace GalaxyDefenders.MVC
 	{
 		[SerializeField] private AllClearView view;
 
-		public void NextLevel()
-        {
-			EventManager.Instance.Raise(new NextLevelEvent());
-		}
 	}
 }

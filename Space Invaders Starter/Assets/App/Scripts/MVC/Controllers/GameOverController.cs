@@ -5,7 +5,7 @@ namespace GalaxyDefenders.MVC
 {
     public class GameOverController : MonoBehaviour
     {
-        [SerializeField] private MainMenuView view;
+        [SerializeField] private GameOverView view;
 
         /*private void OnEnable()
 		{

@@ -12,10 +12,6 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private GameObject pauseView;
         [SerializeField] private GameObject mainMenuView;
 
-        public Button pause;
-        public Button resume;
-        public Button mainMenu;
-
         public void Pause()
         {
             Time.timeScale = 0;

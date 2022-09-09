@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using DynamicBox.SaveManagement;
 
-public class SaveManagerSingleton : MonoBehaviour
+namespace GalaxyDefenders.Managers
 {
-   public static SaveManagerSingleton instance;
+	public class SaveManagerSingleton : MonoBehaviour
+	{
+		public static SaveManagerSingleton instance;
 
-	 public string shipsJsonFileName="defaultFile";
+		public string shipsJsonFileName = "defaultFile";
 
-	 public string playerJsonFileName = "playerData";
+		public string playerJsonFileName = "playerData";
 
-	 public SaveManager saveManager;
+		public SaveManager saveManager;
 
-	 
 
-	 private void Awake()
-	 {
-			if(instance!=null && instance != this)
+
+		private void Awake()
+		{
+			if (instance != null && instance != this)
 			{
-				 Destroy(instance.gameObject);
+				Destroy(instance.gameObject);
 			}
 			instance = this;
 
@@ -27,5 +29,6 @@ public class SaveManagerSingleton : MonoBehaviour
 
 			saveManager = new SaveManager(StorageMethod.JSON);
 
-	 }
+		}
+	}
 }

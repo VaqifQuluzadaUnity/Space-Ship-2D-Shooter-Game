@@ -13,13 +13,12 @@ namespace GalaxyDefenders.Spawners
 		[SerializeField] public List<GameObject> spawnedEnemies = new List<GameObject>();
 		[SerializeField] public Stack<GameObject> enemyPool = new Stack<GameObject>();
 		[SerializeField] private EnemyBulletSpawner enemyBulletSpawnerPrefab;
-		[SerializeField] private Transform cannonPos;
 		[SerializeField] private MusicControl music;
+		[SerializeField] private int enemyCount;
 
 		internal static EnemySpawner Instance;
 
 		private int columnCount;
-		private int enemyCount = 20;
 		public int randomEnemy;
 		public int randomSpawnPoint;
 		private GameObject enemy;
@@ -45,6 +44,7 @@ namespace GalaxyDefenders.Spawners
 						enemy.SetActive(true);
 						spawnedEnemies.Add(enemy);
 					}
+
 					enemyCount = 0;
 				}
 
@@ -54,14 +54,13 @@ namespace GalaxyDefenders.Spawners
 
 					for (int i = 0; i < columnCount; i++)
 					{
-						
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
 						enemy = enemyPool.Pop();
 						spawnedEnemies.Add(enemy);
 						enemy.transform.position = spawnPoints[randomSpawnPoint].position;
 						enemy.SetActive(true);
-						
 					}
+
 					yield return new WaitForSeconds(3f);
 					StartCoroutine(SpawnEnemyWave());
 				}

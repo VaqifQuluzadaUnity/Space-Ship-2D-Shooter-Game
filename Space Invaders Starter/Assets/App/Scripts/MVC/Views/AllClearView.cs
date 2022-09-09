@@ -9,29 +9,17 @@ namespace GalaxyDefenders.MVC
         [Header("Controller reference")]
         [SerializeField] private AllClearController controller;
 
-		[Header("View references")]
-		[SerializeField] private Image image;
-		[SerializeField] private Button nextLevel;
+		//[Header("View references")]
 
-		public void NextLevel()
-        {
-            controller.NextLevel();
-        }
-
-		private void OnEnable()
+		/*private void OnEnable()
 		{
-			EventManager.Instance.AddListener<LevelDataEvent>(LevelDataEventHandler);
+			EventManager.Instance.AddListener<Event>(EventHandler);
 		}
 
 		private void OnDisable()
 		{
-			EventManager.Instance.RemoveListener<LevelDataEvent>(LevelDataEventHandler);
-		}
+			EventManager.Instance.RemoveListener<Event>(EventHandler);
+		}*/
 
-		private void LevelDataEventHandler(LevelDataEvent eventDetails)
-		{
-			image.gameObject.SetActive(false);
-			nextLevel.interactable=true;
-		}
 	}
 }

@@ -8,11 +8,11 @@ namespace GalaxyDefenders.Music_SFX
         [SerializeField] private AudioSource source;
         [SerializeField] internal int pitchChangeSteps = 5;
         [SerializeField] private float maxPitch = 5.25f;
+        [SerializeField] private int enemyCount;
 
         internal static MusicControl Instance;
 
         private int killCount;
-        private int enemyCount = 20;
         private int tempKillCount;
 
         private readonly float defaultTempo = 1.33f;

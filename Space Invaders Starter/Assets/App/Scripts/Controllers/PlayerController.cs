@@ -4,7 +4,7 @@ namespace GalaxyDefenders.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float speed = 500f;
+        [SerializeField] public float speed = 500f;
 
 //#if UNITY_EDITOR
         private void Update()
@@ -39,16 +39,6 @@ namespace GalaxyDefenders.Controllers
                     }
                 }
             } 
-            
-            shootTimer += Time.deltaTime;
-
-            if (shootTimer > coolDownTime)
-            {
-                shootTimer = 0f;
-
-                Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
-                GameManager.Instance.PlaySfx(shooting);
-            }
         }
 #endif
 */

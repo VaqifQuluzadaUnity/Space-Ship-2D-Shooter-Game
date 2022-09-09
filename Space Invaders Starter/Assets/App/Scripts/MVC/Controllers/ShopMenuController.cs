@@ -7,7 +7,7 @@ namespace GalaxyDefenders.MVC
     {
         [SerializeField] private ShopScrollView view;
 
-        /*private void OnEnable()
+		/*private void OnEnable()
 		{
 			//EventManager.Instance.AddListener<Event>(EventHandler);
 		}
@@ -18,5 +18,10 @@ namespace GalaxyDefenders.MVC
 			//EventManager.Instance.RemoveListener<Event>(EventHandler);
 
 		}*/
-    }
+
+		public void Back()
+		{
+			EventManager.Instance.Raise(new BackEvent());
+		}
+	}
 }
