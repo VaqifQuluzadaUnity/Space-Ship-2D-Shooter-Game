@@ -28,20 +28,20 @@ namespace GalaxyDefenders.Managers
 			if (bestScore <= score)
 			{
 				bestScore = score;
-				EventManager.Instance.Raise(new UIDataEvent(score));
+				EventManager.Instance.Raise(new BestScoreDataEvent(score));
 			}
 		}
 
 		private void OnEnable()
 		{
 			EventManager.Instance.AddListener<ScoreEvent>(ScoreEventHandler);
-			EventManager.Instance.AddListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+			EventManager.Instance.AddListener<BestScoreDataExistedEvent>(BestScoreDataExistedEventHandler);
 		}
 
 		private void OnDisable()
 		{
 			EventManager.Instance.RemoveListener<ScoreEvent>(ScoreEventHandler);
-			EventManager.Instance.RemoveListener<UIDataExistedEvent>(UIDataExistedEventHandler);
+			EventManager.Instance.RemoveListener<BestScoreDataExistedEvent>(BestScoreDataExistedEventHandler);
 		}
 
 		public void ScoreEventHandler(ScoreEvent eventdetails)
@@ -49,9 +49,9 @@ namespace GalaxyDefenders.Managers
 			UpdateScore(eventdetails.Points);
 		}
 
-		public void UIDataExistedEventHandler(UIDataExistedEvent eventdetails)
+		public void BestScoreDataExistedEventHandler(BestScoreDataExistedEvent eventdetails)
 		{
-			UpdateBestScore(eventdetails.uiData);
+			UpdateBestScore(eventdetails.bestScoreData);
 		}
 
 		internal void UpdateScore(int value)
@@ -60,9 +60,9 @@ namespace GalaxyDefenders.Managers
 			scoreLabel.text = $"Score: {score}";
 		}
 
-		internal void UpdateBestScore(UIData uiData)
+		internal void UpdateBestScore(BestScoreData bestScoreData)
 		{
-			bestScore = uiData.bestScore;
+			bestScore = bestScoreData.bestScore;
 			highScoreLabel.text = $"High Score: {bestScore}";
 		}
 

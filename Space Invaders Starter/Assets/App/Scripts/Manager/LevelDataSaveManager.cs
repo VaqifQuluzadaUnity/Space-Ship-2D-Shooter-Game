@@ -18,13 +18,13 @@ namespace GalaxyDefenders.Managers
         private LevelData levelState;
 
         private int currentLevel;
-        //private int currentLevel = SceneManager.GetActiveScene().buildIndex;
 
         List<LevelData> levelStates = new List<LevelData>();
 
         private void Awake()
         {
             saveManager = new SaveManager(StorageMethod.JSON);
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
 
         private void Start()
@@ -44,8 +44,6 @@ namespace GalaxyDefenders.Managers
             }
             else
             {
-
-
                 for (int i = 0; i < 11; i++)
                 {
                     levelStates.Add(levelState);

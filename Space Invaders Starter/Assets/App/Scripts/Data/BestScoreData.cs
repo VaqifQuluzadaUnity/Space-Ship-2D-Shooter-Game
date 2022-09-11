@@ -1,10 +1,10 @@
 namespace GalaxyDefenders.Data
 {
-    public class UIData
+    public class BestScoreData
     {
         public int bestScore;
 
-        public UIData(int BestScore)
+        public BestScoreData(int BestScore)
         {
             bestScore = BestScore;
         }

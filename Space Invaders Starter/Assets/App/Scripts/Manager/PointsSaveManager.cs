@@ -14,6 +14,7 @@ namespace GalaxyDefenders.Managers
 		[SerializeField] private string containerName = "PointsData";
 
 		public int oldPointData;
+		public int sum;
 
 		SaveManager saveManager;
 
@@ -37,24 +38,38 @@ namespace GalaxyDefenders.Managers
 		private void OnEnable()
 		{
 			EventManager.Instance.AddListener<ScoreEvent>(ScoreEventHandler);
+			EventManager.Instance.AddListener<PurchaseEvent>(PurchaseEventHandler);
 		}
 
 		private void OnDisable()
 		{
 			EventManager.Instance.RemoveListener<ScoreEvent>(ScoreEventHandler);
+			EventManager.Instance.RemoveListener<PurchaseEvent>(PurchaseEventHandler);
 		}
 
 		#endregion
 
 		private void ScoreEventHandler(ScoreEvent eventDetails)
 		{
-			int sum = oldPointData + eventDetails.Points;
+			sum = oldPointData + eventDetails.Points;
 
 			PointData newPointData = new PointData(sum);
 
 			Upgrade.Instance.SetCheckPoint(newPointData);
 
 			saveManager.SaveToFile<PointData>(newPointData, containerName);
+		}
+
+		private void PurchaseEventHandler(PurchaseEvent eventDetails)
+        {
+			sum-= int.Parse(Upgrade.Instance.price.text);
+
+			PointData pointDataAfterPurchase = new PointData(sum);
+
+			Upgrade.Instance.SetCheckPoint(pointDataAfterPurchase);
+
+			saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
+
 		}
 	}
 }

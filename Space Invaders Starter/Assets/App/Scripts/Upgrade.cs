@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using GalaxyDefenders.Data;
 using GalaxyDefenders.Controllers;
+using DynamicBox.EventManagement;
+using GalaxyDefenders.MVC;
 
 public class Upgrade : MonoBehaviour
 {
-    [SerializeField] private Text upgrade;
+    [SerializeField] public Text price;
+    [SerializeField] private Text bank;
     [SerializeField] private PointData check;
     [SerializeField] private PlayerController speed;
 
@@ -23,13 +26,13 @@ public class Upgrade : MonoBehaviour
 
     public void UpgradeMovement()
     {
-        if (check.points == int.Parse(upgrade.text))
+        if (check.points == int.Parse(price.text))
         {
-            var sum = int.Parse(upgrade.text) + increasePrice;
-            upgrade.text = sum.ToString();
+            EventManager.Instance.Raise(new PurchaseEvent());
+            var sum = int.Parse(price.text) + increasePrice;
+            price.text = sum.ToString();
             speed.speed+=addSpeed;
         }
-
     }
 
     private void Awake()
@@ -42,5 +45,7 @@ public class Upgrade : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        bank.text = $"Points: {check.points.ToString()}";
     }
 }

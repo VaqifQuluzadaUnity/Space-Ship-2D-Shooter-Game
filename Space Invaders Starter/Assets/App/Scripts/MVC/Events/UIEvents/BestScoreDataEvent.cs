@@ -2,11 +2,11 @@ using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.MVC
 {
-    public class UIDataEvent : GameEvent
+    public class BestScoreDataEvent : GameEvent
     {
         public int bestScore;
 
-        public UIDataEvent(int BestScore)
+        public BestScoreDataEvent(int BestScore)
         {
             bestScore = BestScore;
         }
