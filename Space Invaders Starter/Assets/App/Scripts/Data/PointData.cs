@@ -1,5 +1,6 @@
 namespace GalaxyDefenders.Data
 {
+  [System.Serializable]
     public class PointData
     {
         public int points;

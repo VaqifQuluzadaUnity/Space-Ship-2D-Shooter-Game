@@ -1635,6 +1635,7 @@ MonoBehaviour:
   - {fileID: 382945199}
   - {fileID: 254426240}
   - {fileID: 715759649}
+  currentLevel: 0
 --- !u!1 &193997226
 GameObject:
   m_ObjectHideFlags: 0
@@ -8762,7 +8763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297685472}
   - component: {fileID: 1297685473}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8796,7 +8797,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -9.021004, y: -1.0961368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8807,7 +8808,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.042007, y: 10.716169}
   m_EdgeRadius: 0
 --- !u!1 &1303669186
 GameObject:
@@ -9166,6 +9167,7 @@ GameObject:
   - component: {fileID: 1472441961}
   - component: {fileID: 1472441963}
   - component: {fileID: 1472441962}
+  - component: {fileID: 1472441964}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -9261,6 +9263,27 @@ MonoBehaviour:
   respawnTime: 2
   sprite: {fileID: 666176963}
   shipData: {fileID: 0}
+--- !u!50 &1472441964
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472441958}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &1473017423
 GameObject:
   m_ObjectHideFlags: 0
@@ -10803,6 +10826,7 @@ Transform:
   - {fileID: 2079123414}
   - {fileID: 1769056597}
   - {fileID: 193642524}
+  - {fileID: 1798134507}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11685,6 +11709,70 @@ MonoBehaviour:
   enemyCount: 20
   randomEnemy: 0
   randomSpawnPoint: 0
+--- !u!1 &1798134506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798134507}
+  - component: {fileID: 1798134509}
+  - component: {fileID: 1798134508}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798134507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798134506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1646910146}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1798134508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798134506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de2cf08232a3774d9b206cd7dda77f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: {fileID: 657071884}
+  bank: {fileID: 1579740959}
+  check:
+    points: 0
+  speed: {fileID: 1472441960}
+--- !u!114 &1798134509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798134506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e00a1b623950a4ea21ed0ccc5d9d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerName: PointsData
+  oldPointData: 0
+  sum: 0
 --- !u!1 &1845285023
 GameObject:
   m_ObjectHideFlags: 0
@@ -11755,7 +11843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846720878}
   - component: {fileID: 1846720879}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'RightWall '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11789,7 +11877,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 9.021004, y: -1.0961368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11800,7 +11888,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.042007, y: 10.716169}
   m_EdgeRadius: 0
 --- !u!1 &1861341773
 GameObject:
@@ -13285,6 +13373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: {fileID: 0}
   bank: {fileID: 0}
+  check:
+    points: 0
   speed: {fileID: 1472441960}
 --- !u!114 &2144746091
 MonoBehaviour:

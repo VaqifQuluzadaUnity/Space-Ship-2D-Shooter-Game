@@ -1,71 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GalaxyDefenders.Managers;
 using DynamicBox.EventManagement;
-using GalaxyDefenders.Controllers;
+using GalaxyDefenders.Managers;
+using System.Collections;
+using UnityEngine;
 
 namespace GalaxyDefenders.Spawners
 {
-    public class PlayerRespawn : MonoBehaviour
-    {
-        [SerializeField] private Collider2D cannonCollider;
-        [SerializeField] private float respawnTime = 2f;
-        [SerializeField] private SpriteRenderer sprite;
-        [SerializeField] ShopItemSO shipData;
+	public class PlayerRespawn : MonoBehaviour
+	{
+		[SerializeField] private Collider2D cannonCollider;
+		[SerializeField] private float respawnTime = 2f;
+		[SerializeField] private SpriteRenderer sprite;
+		[SerializeField] ShopItemSO shipData;
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            GameManager.Instance.UpdateLives();
-            Vibrator.Vibrate();
-            StopAllCoroutines();
-            StartCoroutine(Respawn());
-        }
+		private void OnCollisionEnter2D(Collision2D other)
+		{
+			if (other.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
+			{
+				return;
+			}
+			print("Collision");
+			GameManager.Instance.UpdateLives();
+			Vibrator.Vibrate();
+			StopAllCoroutines();
+			StartCoroutine(Respawn());
+		}
 
-        IEnumerator Respawn()
-        {
-            enabled = false;
-            cannonCollider.enabled = false;
-            ChangeSpriteAlpha(0.0f);
+		IEnumerator Respawn()
+		{
+			enabled = false;
+			cannonCollider.enabled = false;
+			ChangeSpriteAlpha(0.0f);
 
-            yield return new WaitForSeconds(0.25f * respawnTime);
+			yield return new WaitForSeconds(0.25f * respawnTime);
 
-            enabled = true;
-            ChangeSpriteAlpha(0.25f);
+			enabled = true;
+			ChangeSpriteAlpha(0.25f);
 
-            yield return new WaitForSeconds(0.75f * respawnTime);
+			yield return new WaitForSeconds(0.75f * respawnTime);
 
-            ChangeSpriteAlpha(1.0f);
-            cannonCollider.enabled = true;
-        }
+			ChangeSpriteAlpha(1.0f);
+			cannonCollider.enabled = true;
+		}
 
-        private void ChangeSpriteAlpha(float value)
-        {
-            var color = sprite.color;
-            color.a = value;
-            sprite.color = color;
-        }
+		private void ChangeSpriteAlpha(float value)
+		{
+			var color = sprite.color;
+			color.a = value;
+			sprite.color = color;
+		}
 
-        public void SetShipData(ShopItemSO _shipData)
-        {
+		public void SetShipData(ShopItemSO _shipData)
+		{
 
-            shipData = _shipData;
-        }
+			shipData = _shipData;
+		}
 
-        private void OnEnable()
-        {
-            EventManager.Instance.AddListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
-        }
+		private void OnEnable()
+		{
+			EventManager.Instance.AddListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
+		}
 
 
-        private void OnDisable()
-        {
-            EventManager.Instance.RemoveListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
-        }
+		private void OnDisable()
+		{
+			EventManager.Instance.RemoveListener<ChangePlayerShipEvent>(ChangePlayerShipEventHandler);
+		}
 
-        private void ChangePlayerShipEventHandler(ChangePlayerShipEvent eventdetails)
-        {
-            sprite.sprite = shipData.ReturnItemSprite();
-        }
-    }
+		private void ChangePlayerShipEventHandler(ChangePlayerShipEvent eventdetails)
+		{
+			sprite.sprite = shipData.ReturnItemSprite();
+		}
+	}
 }

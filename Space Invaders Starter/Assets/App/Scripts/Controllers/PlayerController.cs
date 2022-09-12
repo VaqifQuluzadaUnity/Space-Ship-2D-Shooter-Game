@@ -6,8 +6,8 @@ namespace GalaxyDefenders.Controllers
     {
         [SerializeField] public float speed = 500f;
 
-//#if UNITY_EDITOR
-        private void Update()
+#if UNITY_EDITOR
+        private void FixedUpdate()
         {
             if (Input.GetKey(KeyCode.D))
             {
@@ -18,9 +18,9 @@ namespace GalaxyDefenders.Controllers
                 transform.Translate(-speed * Time.deltaTime, 0, 0);
             }
         }
-//#endif
+#endif
 
-/*#if UNITY_ANDROID
+#if UNITY_ANDROID
         private void Update()
         {
             if(Input.touchCount > 0)
@@ -41,6 +41,6 @@ namespace GalaxyDefenders.Controllers
             } 
         }
 #endif
-*/
+
     }
 }
