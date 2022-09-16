@@ -18,11 +18,17 @@ namespace GalaxyDefenders.Spawners
 			{
 				return;
 			}
-			print("Collision");
-			GameManager.Instance.UpdateLives();
-			Vibrator.Vibrate();
-			StopAllCoroutines();
-			StartCoroutine(Respawn());
+			else if (other.collider.gameObject.layer == LayerMask.NameToLayer("Heart"))
+			{
+				EventManager.Instance.Raise(new LivesEvent(1));
+			}
+			else
+			{
+				EventManager.Instance.Raise(new LivesEvent(-1));
+				Vibrator.Vibrate();
+				StopAllCoroutines();
+				StartCoroutine(Respawn());
+			}
 		}
 
 		IEnumerator Respawn()

@@ -32,11 +32,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 129784496128
-    m_Key: Quit
+    m_Key: Exit
     m_Metadata:
       m_Items: []
   - m_Id: 3401530057310208
     m_Key: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11237423795290112
+    m_Key: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11238147501473792
+    m_Key: Credits
     m_Metadata:
       m_Items: []
   m_Metadata:

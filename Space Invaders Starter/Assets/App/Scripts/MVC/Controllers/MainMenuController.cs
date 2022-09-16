@@ -34,14 +34,24 @@ namespace GalaxyDefenders.MVC
 			EventManager.Instance.Raise(new OptionsEvent());
 		}
 
+		public void ShopMenu()
+		{
+			EventManager.Instance.Raise(new ShopMenuEvent());
+		}
+
+		public void Upgrade()
+		{
+			
+		}
+
 		public void Levels()
 		{
 			EventManager.Instance.Raise(new LevelsEvent());
 		}
 
-		public void ShopMenu()
+		public void Credits()
 		{
-			EventManager.Instance.Raise(new ShopMenuEvent());
+			EventManager.Instance.Raise(new CreditsEvent());
 		}
 	}
 }

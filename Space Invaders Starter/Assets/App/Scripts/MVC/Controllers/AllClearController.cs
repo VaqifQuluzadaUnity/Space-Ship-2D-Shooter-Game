@@ -7,5 +7,9 @@ namespace GalaxyDefenders.MVC
 	{
 		[SerializeField] private AllClearView view;
 
+		public void MainMenu()
+        {
+
+        }
 	}
 }

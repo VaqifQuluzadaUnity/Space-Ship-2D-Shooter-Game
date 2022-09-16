@@ -1,46 +1,43 @@
 ﻿using UnityEngine;
+using GalaxyDefenders.Data;
 
 namespace GalaxyDefenders.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] public float speed = 500f;
+        [SerializeField] public UpgradeElementsData speed;
+        [SerializeField] private Rigidbody2D rb;
 
 #if UNITY_EDITOR
         private void FixedUpdate()
         {
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(speed * Time.deltaTime, 0, 0);
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(-speed * Time.deltaTime, 0, 0);
-            }
+            var horizontalInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(horizontalInput * speed.speed, rb.velocity.y);
         }
 #endif
 
 #if UNITY_ANDROID
-        private void Update()
-        {
-            if(Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Stationary)
+                private void Update()
                 {
-                    if (touch.position.x > screenWidth / 2)
+                    if(Input.touchCount > 0)
                     {
-                        transform.Translate(speed * Time.deltaTime, 0, 0);
-                    }
-                    if (touch.position.x < screenWidth / 2)
-                    {
-                        transform.Translate(-speed * Time.deltaTime, 0, 0);
-                    }
-                }
-            } 
-        }
-#endif
+                        Touch touch = Input.GetTouch(0);
 
+                        if (touch.phase == TouchPhase.Stationary)
+                        {
+                            if (touch.position.x > screenWidth / 2)
+                            {
+                                var horizontalInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(horizontalInput * speed.speed, rb.velocity.y);
+                            }
+                            if (touch.position.x < screenWidth / 2)
+                            {
+                                var horizontalInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(horizontalInput * speed.speed, rb.velocity.y);
+                            }
+                        }
+                    } 
+                }
+#endif
     }
 }

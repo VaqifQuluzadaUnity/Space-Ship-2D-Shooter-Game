@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GalaxyDefenders.Managers;
+using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.Music_SFX
 {
@@ -38,7 +39,7 @@ namespace GalaxyDefenders.Music_SFX
             killCount++;
             if (killCount == enemyCount)
             {
-                GameManager.Instance.TriggerGameOver(false);
+                EventManager.Instance.Raise(new TriggerGameOverEvent(false));
                 return;
             }
             tempKillCount++;

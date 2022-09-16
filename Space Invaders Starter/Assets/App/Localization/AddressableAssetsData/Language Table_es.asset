@@ -35,11 +35,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 129784496128
-    m_Localized: Abandonar
+    m_Localized: Salida
     m_Metadata:
       m_Items: []
   - m_Id: 3401530057310208
     m_Localized: Comercio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11237423795290112
+    m_Localized: Mejora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11238147501473792
+    m_Localized: "Cr\xE9ditos"
     m_Metadata:
       m_Items: []
   references:

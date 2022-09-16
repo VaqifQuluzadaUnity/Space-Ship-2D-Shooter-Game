@@ -30,7 +30,7 @@ namespace GalaxyDefenders.Controllers
 
             if (currentY < -170)
             {
-                GameManager.Instance.TriggerGameOver(true);
+                EventManager.Instance.Raise(new TriggerGameOverEvent(true));
             }
         }
 

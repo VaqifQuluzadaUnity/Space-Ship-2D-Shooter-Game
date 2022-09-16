@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6663010631795688966}
   - component: {fileID: 6663010631795688967}
   - component: {fileID: 1258952877074969508}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,6 @@ MonoBehaviour:
   shooting: {fileID: 8300000, guid: 9e07fde2c9c9b5947affdecf9b94a051, type: 3}
   bulletPrefab: {fileID: 7314271257196979617, guid: 5c0976052bf77a64891091ffc17b605c,
     type: 3}
-  spawnPoint: {fileID: 6663010632428595610}
   minTime: 1
   maxTime: 10
 --- !u!61 &6663010631795688967
@@ -108,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6663010632428595610}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

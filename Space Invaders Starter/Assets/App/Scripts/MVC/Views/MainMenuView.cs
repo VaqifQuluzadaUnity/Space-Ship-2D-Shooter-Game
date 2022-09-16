@@ -12,8 +12,11 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private GameObject ui;
         [SerializeField] private GameObject instructions;
         [SerializeField] private GameObject options;
-        [SerializeField] private GameObject levels;
         [SerializeField] private GameObject shopMenu;
+        [SerializeField] private GameObject upgrade;
+        [SerializeField] private GameObject levels;
+        [SerializeField] private GameObject credits;
+
 
         void Start()
         {
@@ -42,6 +45,20 @@ namespace GalaxyDefenders.MVC
             options.SetActive(true);
         }
 
+        public void ShopMenu()
+        {
+            view.SetActive(false);
+            controller.Instructions();
+            shopMenu.SetActive(true);
+        }
+
+        public void Upgrade()
+        {
+            view.SetActive(false);
+            controller.Upgrade();
+            upgrade.SetActive(true);
+        }
+
         public void Levels()
         {
             view.SetActive(false);
@@ -49,11 +66,11 @@ namespace GalaxyDefenders.MVC
             levels.SetActive(true);
         }
 
-        public void ShopMenu()
+        public void Credits()
         {
             view.SetActive(false);
-            controller.Instructions();
-            shopMenu.SetActive(true);
+            controller.Credits();
+            credits.SetActive(true);
         }
 
         public void Quit()

@@ -12,9 +12,7 @@ public class ShopItemSO : ScriptableObject
 
     [Header("Properties")]
     [SerializeField] private string itemName;
-    [SerializeField] private int itemPrice;
-    [SerializeField] private float itemSpeed;
-    [SerializeField] private float itemHealth;
+    //[SerializeField] private int itemPrice;
 
     public ShipState shipState;
 
@@ -28,10 +26,10 @@ public class ShopItemSO : ScriptableObject
         return itemName;
     }
 
-    public int ReturnItemPrice()
+    /*public int ReturnItemPrice()
     {
         return itemPrice;
-    }
+    }*/
 
     public void BuyItem()
     {

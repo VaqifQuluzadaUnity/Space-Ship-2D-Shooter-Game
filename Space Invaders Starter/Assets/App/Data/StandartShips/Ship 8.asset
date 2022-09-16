@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2453b20d64b2b9d46b71804be517ac67, type: 3}
   m_Name: Ship 8
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: db07a7465eb667e4ab48f46565def16e, type: 3}
+  itemSprite: {fileID: 21300000, guid: 691c880225e9bd242adc3491b1abbf0e, type: 3}
   itemName: Blaster 7
-  itemPrice: 800
-  itemSpeed: 500
-  itemHealth: 100
   shipState:
     isBuy: 0
     isSelect: 0

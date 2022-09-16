@@ -42,5 +42,13 @@ MonoBehaviour:
     m_Localized: "Ma\u011Faza"
     m_Metadata:
       m_Items: []
+  - m_Id: 11237423795290112
+    m_Localized: "T\u0259kmill\u0259\u015Fdirm\u0259k\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11238147501473792
+    m_Localized: "Kreditl\u0259r"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

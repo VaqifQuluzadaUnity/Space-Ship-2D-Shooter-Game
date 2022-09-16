@@ -5,7 +5,7 @@ namespace GalaxyDefenders.MVC
 {
     public class ShopMenuController : MonoBehaviour
     {
-        [SerializeField] private ShopScrollView view;
+        [SerializeField] private ShopMenuView view;
 
 		/*private void OnEnable()
 		{
@@ -21,7 +21,17 @@ namespace GalaxyDefenders.MVC
 
 		public void Back()
 		{
-			EventManager.Instance.Raise(new BackEvent());
+			
 		}
+
+		public void StandartItems()
+        {
+
+        }
+
+		public void PremiumItems()
+        {
+
+        }
 	}
 }

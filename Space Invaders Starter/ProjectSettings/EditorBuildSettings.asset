@@ -4,7 +4,40 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/App/Scenes/Main.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/App/Scenes/Level 2.unity
+    guid: 9ac527594a43a904e8bc4aafc19a4d4e
+  - enabled: 1
+    path: Assets/App/Scenes/Level 3.unity
+    guid: 365a2d52476f5c7499b0d8b56bfa9d4a
+  - enabled: 1
+    path: Assets/App/Scenes/Level 4.unity
+    guid: 1ea06350db9594d47831addb66e368d5
+  - enabled: 1
+    path: Assets/App/Scenes/Level 5.unity
+    guid: 4e37899eaacc8c84da0b44b91dfb19d1
+  - enabled: 1
+    path: Assets/App/Scenes/Level 6.unity
+    guid: 878d04b1f666047478ba450ee87923c9
+  - enabled: 1
+    path: Assets/App/Scenes/Level 7.unity
+    guid: 825282b3d20f816479a04cc9a707c58d
+  - enabled: 1
+    path: Assets/App/Scenes/Level 8.unity
+    guid: 45d1a307e9e5fa947bbd15e0e74150a4
+  - enabled: 1
+    path: Assets/App/Scenes/Level 9.unity
+    guid: 2431cb690e654b544881990a557ad056
+  - enabled: 1
+    path: Assets/App/Scenes/Level 10.unity
+    guid: 105bb95c914b8d34f95824f849001430
+  - enabled: 1
+    path: Assets/App/Scenes/Level 11.unity
+    guid: 826947191e6de404e995d411e54320f7
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b6bc03d89a7b29d45992fa4797ff4477,
       type: 2}

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GalaxyDefenders.Music_SFX;
+using GalaxyDefenders.Data;
 
 namespace GalaxyDefenders.Spawners
 {
     public class PlayerBulletSpawner : MonoBehaviour
     {
-        [SerializeField] private float coolDownTime = 0.5f;
+        [SerializeField] UpgradeElementsData coolDownTime;
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private Transform muzzle;
         [SerializeField] private AudioClip shooting;
@@ -18,7 +19,7 @@ namespace GalaxyDefenders.Spawners
         {
             shootTimer += Time.deltaTime;
 
-            if (shootTimer > coolDownTime)
+            if (shootTimer > coolDownTime.coolDownTime)
             {
                 shootTimer = 0f;
 

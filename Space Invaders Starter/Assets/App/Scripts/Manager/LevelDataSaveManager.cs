@@ -49,9 +49,9 @@ namespace GalaxyDefenders.Managers
 					levelStates.Add(levelState);
 				}
 
-				levelStates[currentLevel + 1].isUnlocked = false;
-				levelButtons[currentLevel + 1].GetComponentInChildren<Image>().gameObject.SetActive(false);
-				levelButtons[currentLevel + 1].interactable = true;
+				levelStates[currentLevel].isUnlocked = false;
+				levelButtons[currentLevel].GetComponentInChildren<Image>().gameObject.SetActive(false);
+				levelButtons[currentLevel].interactable = true;
 
 				LevelData levelData = new LevelData();
 				saveManager.SaveToFile<LevelData>(levelData, containerName);

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2453b20d64b2b9d46b71804be517ac67, type: 3}
+  m_Name: Ship 4
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 8870947d12c252f47880de901035003f, type: 3}
+  itemName: Ufo 4
+  shipState:
+    isBuy: 1
+    isSelect: 0

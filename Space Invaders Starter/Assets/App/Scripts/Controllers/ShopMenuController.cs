@@ -12,7 +12,9 @@ namespace GalaxyDefenders.Controllers
         public static ShopMenuController instance;
 
         [SerializeField] private GameObject shopItemButtonPrefab;
+        [SerializeField] private GameObject premiumItemButtonPrefab;
         [SerializeField] private Transform standartItemsContentParent;
+        [SerializeField] private Transform premiumItemsContentParent;
         [SerializeField] private ShopItemSO[] standartItemsArray;
         [SerializeField] private ShopItemSO[] premiumItemsArray;
         [SerializeField] private ShipButtonController currentSelectedShip;
@@ -60,12 +62,10 @@ namespace GalaxyDefenders.Controllers
                     shipItemsData.shipStates.Add(shipDataRef.shipState);
                 }
 
-                //If we add new ships
-                //if (shipItemsData.ships.Count < standartItemsArray.Length)
-                //{
-
-                //}
-
+                foreach (ShopItemSO shipDataRef in premiumItemsArray)
+                {
+                    shipItemsData.shipStates.Add(shipDataRef.shipState);
+                }
 
                 SaveManagerSingleton.instance.saveManager.SaveToFile<ShipItemsData>
                 (
@@ -78,9 +78,14 @@ namespace GalaxyDefenders.Controllers
 
         private void SetDataToShips(List<ShipState> shipStates)
         {
-            for (int i = 0; i < shipStates.Count; i++)
+            for (int i = 0; i < standartItemsArray.Length; i++)
             {
                 standartItemsArray[i].shipState = shipStates[i];
+            }
+
+            for (int i = 0; i < premiumItemsArray.Length; i++)
+            {
+                premiumItemsArray[i].shipState = shipStates[i];
             }
         }
 
@@ -93,6 +98,15 @@ namespace GalaxyDefenders.Controllers
                 ShipButtonController buttonController = buttonInstance.GetComponent<ShipButtonController>();
 
                 buttonController.SetShipData(standartItemsArray[i]);
+                buttonController.SetupShipDataOnUI();
+            }
+            for (int i = 0; i < premiumItemsArray.Length; i++)
+            {
+                GameObject buttonInstance = Instantiate(premiumItemButtonPrefab, premiumItemsContentParent);
+
+                ShipButtonController buttonController = buttonInstance.GetComponent<ShipButtonController>();
+
+                buttonController.SetShipData(premiumItemsArray[i]);
                 buttonController.SetupShipDataOnUI();
             }
         }
@@ -111,6 +125,11 @@ namespace GalaxyDefenders.Controllers
             ShipItemsData shipItemsData = new ShipItemsData();
 
             foreach (ShopItemSO shipData in standartItemsArray)
+            {
+                shipItemsData.shipStates.Add(shipData.shipState);
+            }
+
+            foreach (ShopItemSO shipData in premiumItemsArray)
             {
                 shipItemsData.shipStates.Add(shipData.shipState);
             }

@@ -12,6 +12,7 @@ namespace GalaxyDefenders.Managers
 	public class PointsSaveManager : MonoBehaviour
 	{
 		[SerializeField] private string containerName = "PointsData";
+		[SerializeField] private UpgradeView view;
 
 		public int oldPointData;
 		public int sum;
@@ -55,20 +56,27 @@ namespace GalaxyDefenders.Managers
 
 			PointData newPointData = new PointData(sum);
 
-			Upgrade.Instance.SetCheckPoint(newPointData);
-
 			saveManager.SaveToFile<PointData>(newPointData, containerName);
 		}
 
 		private void PurchaseEventHandler(PurchaseEvent eventDetails)
         {
-			sum-= int.Parse(Upgrade.Instance.price.text);
+			if (eventDetails.num == 1)
+			{
+				sum -= int.Parse(view.movementPrice.text);
 
-			PointData pointDataAfterPurchase = new PointData(sum);
+				PointData pointDataAfterPurchase = new PointData(sum);
 
-			Upgrade.Instance.SetCheckPoint(pointDataAfterPurchase);
+				saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
+			}
+			else if (eventDetails.num == 2)
+			{
+				sum -= int.Parse(view.bulletPrice.text);
 
-			saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
+				PointData pointDataAfterPurchase = new PointData(sum);
+
+				saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
+			}
 
 		}
 	}

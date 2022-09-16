@@ -9,7 +9,7 @@ namespace GalaxyDefenders.Controllers
     public class ShipButtonController : MonoBehaviour
     {
         [SerializeField] Image shipIconImage;
-        [SerializeField] private Text shipPriceText;
+        //[SerializeField] private Text shipPriceText;
         [SerializeField] private Button buyOrSelectButton;
         [SerializeField] private Text buyOrSelectButtonText;
         [SerializeField] ShopItemSO shipData;
@@ -18,7 +18,7 @@ namespace GalaxyDefenders.Controllers
         {
             shipIconImage.sprite = shipData.ReturnItemSprite();
 
-            shipPriceText.text = shipData.ReturnItemPrice().ToString();
+            //shipPriceText.text = shipData.ReturnItemPrice().ToString();
 
             if (shipData.shipState.isBuy)
             {

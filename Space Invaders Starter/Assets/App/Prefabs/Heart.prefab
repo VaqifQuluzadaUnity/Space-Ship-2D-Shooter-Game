@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5691791809187320373}
   - component: {fileID: 6068974866097136236}
   - component: {fileID: 4635433421124795174}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0195430d1d8b93645a72a713c7e1dd76, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7d5575d279b18e408ff7af2008bde1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +136,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 2.84}
+    oldSize: {x: 0.65, y: 0.55}
     newSize: {x: 3, y: 2.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
