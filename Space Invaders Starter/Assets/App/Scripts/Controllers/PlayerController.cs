@@ -8,11 +8,13 @@ namespace GalaxyDefenders.Controllers
         [SerializeField] public UpgradeElementsData speed;
         [SerializeField] private Rigidbody2D rb;
 
+        private int speed1 = 500;
+
 #if UNITY_EDITOR
         private void FixedUpdate()
         {
             var horizontalInput = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(horizontalInput * speed.speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalInput * speed1, rb.velocity.y);
         }
 #endif
 

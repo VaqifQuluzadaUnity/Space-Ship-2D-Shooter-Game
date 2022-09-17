@@ -57,6 +57,7 @@ namespace GalaxyDefenders.MVC
 			livesLabel.text = $"Lives: {lives}";
 			if (lives <= 0)
 			{
+				Debug.Log("Lives finished");
 				TriggerGameOver();
 			}
 		}

@@ -47,8 +47,8 @@ namespace GalaxyDefenders.MVC
 
         private void Start()
         {
-            movementPrice.text = pricesData.movementPrice.ToString();
-            bulletPrice.text = pricesData.bulletPrice.ToString();
+            movementPrice.text = "150" /*pricesData.movementPrice.ToString()*/;
+            bulletPrice.text = "150"/*pricesData.bulletPrice.ToString()*/;
             bank.text = $"Points: {check.points.ToString()}";
         }
 

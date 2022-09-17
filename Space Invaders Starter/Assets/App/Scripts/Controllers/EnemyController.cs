@@ -30,6 +30,8 @@ namespace GalaxyDefenders.Controllers
 
             if (currentY < -170)
             {
+                Debug.Log("Enemies breached");
+                Debug.Log(gameObject.transform.position.y);
                 EventManager.Instance.Raise(new TriggerGameOverEvent(true));
             }
         }

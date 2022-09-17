@@ -13,13 +13,15 @@ namespace GalaxyDefenders.Spawners
         [SerializeField] private Transform muzzle;
         [SerializeField] private AudioClip shooting;
 
+        private float cooldowntime = 0.5f;
+
         private float shootTimer;
 
         void Update()
         {
             shootTimer += Time.deltaTime;
 
-            if (shootTimer > coolDownTime.coolDownTime)
+            if (shootTimer > cooldowntime)
             {
                 shootTimer = 0f;
 
