@@ -32,6 +32,8 @@ namespace GalaxyDefenders.Managers
 			{
 				PointData pointData = saveManager.LoadFromFile<PointData>(containerName, null);
 
+				EventManager.Instance.Raise(new CheckFetchEvent(pointData));
+
 				oldPointData = pointData.points;
 			}
 		}
@@ -56,6 +58,8 @@ namespace GalaxyDefenders.Managers
 
 			PointData newPointData = new PointData(sum);
 
+			EventManager.Instance.Raise(new CheckFetchEvent(newPointData));
+
 			saveManager.SaveToFile<PointData>(newPointData, containerName);
 		}
 
@@ -67,6 +71,8 @@ namespace GalaxyDefenders.Managers
 
 				PointData pointDataAfterPurchase = new PointData(sum);
 
+				EventManager.Instance.Raise(new CheckFetchEvent(pointDataAfterPurchase));
+
 				saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
 			}
 			else if (eventDetails.num == 2)
@@ -74,6 +80,8 @@ namespace GalaxyDefenders.Managers
 				sum -= int.Parse(view.bulletPrice.text);
 
 				PointData pointDataAfterPurchase = new PointData(sum);
+
+				EventManager.Instance.Raise(new CheckFetchEvent(pointDataAfterPurchase));
 
 				saveManager.SaveToFile<PointData>(pointDataAfterPurchase, containerName);
 			}

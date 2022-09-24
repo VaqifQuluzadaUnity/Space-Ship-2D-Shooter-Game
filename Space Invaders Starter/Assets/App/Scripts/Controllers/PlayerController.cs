@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using GalaxyDefenders.Data;
+using GalaxyDefenders.MVC;
+using DynamicBox.EventManagement;
 
 namespace GalaxyDefenders.Controllers
 {
@@ -8,13 +10,26 @@ namespace GalaxyDefenders.Controllers
         [SerializeField] public UpgradeElementsData speed;
         [SerializeField] private Rigidbody2D rb;
 
-        private int speed1 = 500;
+        private void OnEnable()
+        {
+            EventManager.Instance.AddListener<UpgradeElementsDataFetchEvent>(UpgradeElementsDataFetchEventHandler);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.RemoveListener<UpgradeElementsDataFetchEvent>(UpgradeElementsDataFetchEventHandler);
+        }
+
+        private void UpgradeElementsDataFetchEventHandler(UpgradeElementsDataFetchEvent eventDetails)
+        {
+            speed= eventDetails.UpgradeElementsData;
+        }
 
 #if UNITY_EDITOR
         private void FixedUpdate()
         {
             var horizontalInput = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(horizontalInput * speed1, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalInput * speed.speed, rb.velocity.y);
         }
 #endif
 

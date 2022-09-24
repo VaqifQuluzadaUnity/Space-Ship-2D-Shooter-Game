@@ -17,9 +17,9 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private GameObject menu;
         [SerializeField] public Text movementPrice;
         [SerializeField] public Text bulletPrice;
-        [SerializeField] private Text bank;
-        [SerializeField] private PointData check;
-        [SerializeField] private PricesData pricesData;
+        [SerializeField] public Text bank;
+        [SerializeField] public PointData check;
+        [SerializeField] public PricesData pricesData;
 
         private int increasePrice = 150;
 
@@ -43,13 +43,6 @@ namespace GalaxyDefenders.MVC
                 EventManager.Instance.Raise(new PricesEvent(int.Parse(movementPrice.text), sum));
                 bulletPrice.text = sum.ToString();
             }
-        }
-
-        private void Start()
-        {
-            movementPrice.text = "150" /*pricesData.movementPrice.ToString()*/;
-            bulletPrice.text = "150"/*pricesData.bulletPrice.ToString()*/;
-            bank.text = $"Points: {check.points.ToString()}";
         }
 
         public void Back()

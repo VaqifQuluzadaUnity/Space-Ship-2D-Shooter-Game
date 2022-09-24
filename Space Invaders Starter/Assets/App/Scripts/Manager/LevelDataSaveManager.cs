@@ -7,68 +7,72 @@ using UnityEngine.UI;
 
 namespace GalaxyDefenders.Managers
 {
-	public class LevelDataSaveManager : MonoBehaviour
-	{
-		[SerializeField] private string containerName = "LevelsData";
+    public class LevelDataSaveManager : MonoBehaviour
+    {
+        [SerializeField] private string containerName = "LevelsData";
 
-		[SerializeField] private Button[] levelButtons;
+        [SerializeField] private Button[] levelButtons;
 
-		SaveManager saveManager;
+        SaveManager saveManager;
 
-		private LevelData levelState = new LevelData();
+        private int currentLevel;
 
-		[SerializeField] private int currentLevel;
+        private void Awake()
+        {
+            saveManager = new SaveManager(StorageMethod.JSON);
 
-		List<LevelData> levelStates = new List<LevelData>();
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
+        }
 
-		private void Awake()
-		{
-			saveManager = new SaveManager(StorageMethod.JSON);
-			currentLevel = SceneManager.GetActiveScene().buildIndex;
-		}
+        private void Start()
+        {
+            if (saveManager.FileExists(containerName))
+            {
+                LevelData levelData = saveManager.LoadFromFile<LevelData>(containerName, null);
 
-		private void Start()
-		{
-			if (saveManager.FileExists(containerName))
-			{
-				LevelData levelData = saveManager.LoadFromFile<LevelData>(containerName, null);
+                for (int i = 0; i < levelButtons.Length; i++)
+                {
+                    if (levelData.levelStates[i].isUnlocked == true)
+                    {
+                        levelButtons[i].GetComponentInChildren<Image>().gameObject.SetActive(false);
+                        levelButtons[i].interactable = true;
+                    }
+                }
+            }
+            else
+            {
+                LevelData levelData = new LevelData(levelButtons.Length);
 
-				for (int i = 0; i < levelStates.Count; i++)
-				{
-					if (levelStates[i].isUnlocked == true)
-					{
-						levelButtons[i].GetComponentInChildren<Image>().gameObject.SetActive(false);
-						levelButtons[i].interactable = true;
-					}
-				}
-			}
-			else
-			{
-				for (int i = 0; i < 11; i++)
-				{
-					levelStates.Add(levelState);
-				}
+                foreach (LevelStates levelState in levelData.levelStates)
+                {
+                    for (int i = 0; i < levelButtons.Length; i++)
+                    {
+                        levelData.levelStates[i]=levelState;
+                    }
+                }
 
-				levelStates[currentLevel].isUnlocked = false;
-				levelButtons[currentLevel].GetComponentInChildren<Image>().gameObject.SetActive(false);
-				levelButtons[currentLevel].interactable = true;
+                levelData.levelStates[currentLevel].isUnlocked = true;
+                levelButtons[currentLevel].GetComponentInChildren<Image>().gameObject.SetActive(false);
+                levelButtons[currentLevel].interactable = true;
 
-				LevelData levelData = new LevelData();
-				saveManager.SaveToFile<LevelData>(levelData, containerName);
-			}
-		}
+                saveManager.SaveToFile<LevelData>(levelData, containerName);
+            }
+        }
 
-		public void Unlock()
-		{
-			if (levelStates[currentLevel + 1].isUnlocked == false)
-			{
-				levelStates[currentLevel + 1].isUnlocked = true;
-				levelButtons[currentLevel + 1].GetComponentInChildren<Image>().gameObject.SetActive(false);
-				levelButtons[currentLevel + 1].interactable = true;
+        public void Unlock()
+        {
+            LevelData levelData = new LevelData(levelButtons.Length);
 
-				LevelData levelData = new LevelData();
-				saveManager.SaveToFile<LevelData>(levelData, containerName);
-			}
-		}
-	}
+            SceneManager.LoadScene(currentLevel + 1);
+
+            if (levelData.levelStates[currentLevel + 1].isUnlocked == false)
+            {
+                levelData.levelStates[currentLevel + 1].isUnlocked = true;
+                levelButtons[currentLevel + 1].GetComponentInChildren<Image>().gameObject.SetActive(false);
+                levelButtons[currentLevel + 1].interactable = true;
+
+                saveManager.SaveToFile<LevelData>(levelData, containerName);
+            }
+        }
+    }
 }

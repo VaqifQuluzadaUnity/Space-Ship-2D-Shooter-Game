@@ -12,12 +12,13 @@ namespace GalaxyDefenders.Spawners
 
         private float timer;
         private float currentTime;
+        private Vector3 bulletPosition = new Vector3(0, 20, 0);
 
         internal void Setup()
         {
             currentTime = Random.Range(minTime, maxTime);
 
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position-bulletPosition, Quaternion.identity);
             SFX_Controller.Instance.PlaySfx(shooting);
         }
 

@@ -18,6 +18,7 @@ namespace GalaxyDefenders.Spawners
 
 		internal static EnemySpawner Instance;
 
+		public List<int> spawnedPoints = new List<int>();
 		private int columnCount;
 		public int randomEnemy;
 		public int randomSpawnPoint;
@@ -39,12 +40,17 @@ namespace GalaxyDefenders.Spawners
 					for (int i = 0; i < columnCount; i++)
 					{
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						while(spawnedPoints.Contains(randomSpawnPoint))
+                        {
+							randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						}
+						spawnedPoints.Add(randomSpawnPoint);
 						enemy = enemyPool.Pop();
 						enemy.transform.position = spawnPoints[randomSpawnPoint].position;
 						enemy.SetActive(true);
 						spawnedEnemies.Add(enemy);
 					}
-
+					spawnedPoints.Clear();
 					enemyCount = 0;
 				}
 
@@ -55,12 +61,17 @@ namespace GalaxyDefenders.Spawners
 					for (int i = 0; i < columnCount; i++)
 					{
 						randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						while (spawnedPoints.Contains(randomSpawnPoint))
+						{
+							randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+						}
+						spawnedPoints.Add(randomSpawnPoint);
 						enemy = enemyPool.Pop();
 						spawnedEnemies.Add(enemy);
 						enemy.transform.position = spawnPoints[randomSpawnPoint].position;
 						enemy.SetActive(true);
 					}
-
+					spawnedPoints.Clear();
 					yield return new WaitForSeconds(3f);
 					StartCoroutine(SpawnEnemyWave());
 				}

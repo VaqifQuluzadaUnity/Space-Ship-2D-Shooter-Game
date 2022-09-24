@@ -15,23 +15,14 @@ namespace GalaxyDefenders.Controllers
         private float currentY;
         private float yDecrement;
 
-        void Start()
-        {
-            currentY = gameObject.transform.position.y;
-        }
-
         void Update()
         {
             yDecrement = speedFactor * musicControl.Tempo * Time.deltaTime;
 
             gameObject.transform.Translate(0, -yDecrement, 0);
 
-            currentY -= yDecrement;
-
-            if (currentY < -170)
+            if (gameObject.transform.position.y < -170)
             {
-                Debug.Log("Enemies breached");
-                Debug.Log(gameObject.transform.position.y);
                 EventManager.Instance.Raise(new TriggerGameOverEvent(true));
             }
         }

@@ -16,6 +16,8 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private GameObject gameOver;
         [SerializeField] private GameObject allClear;
 
+        private int live = 3;
+
         internal void FinalBossHealthBarController(int FinalBossHealth)
         {
             healthBarImage.fillAmount = FinalBossHealth / 100f;
@@ -36,8 +38,9 @@ namespace GalaxyDefenders.MVC
 
         internal void Lives(int lives)
         {
-            livesLabel.text = $"Lives: {lives}";
-            if (lives <= 0)
+            live += lives;
+            livesLabel.text = $"Lives: {live}";
+            if (live <= 0)
             {
                 TriggerGameOver();
             }

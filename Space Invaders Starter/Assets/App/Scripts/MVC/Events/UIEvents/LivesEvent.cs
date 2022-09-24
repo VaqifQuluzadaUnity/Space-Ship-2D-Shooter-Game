@@ -2,13 +2,10 @@ using DynamicBox.EventManagement;
 
 public class LivesEvent : GameEvent
 {
-    private int lives = 3;
-    public int result;
-    public int variable;
+    public int lives;
 
-    public LivesEvent(int Variable)
+    public LivesEvent(int variable)
     {
-        variable = Variable;
-        result=lives + variable;
+        lives = variable;
     }
 }

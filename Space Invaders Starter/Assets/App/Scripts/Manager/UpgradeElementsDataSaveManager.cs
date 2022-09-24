@@ -29,10 +29,14 @@ namespace GalaxyDefenders.Managers
             if(saveManager.FileExists(containerName))
             {
                 UpgradeElementsData oldUpgradeElementsData = saveManager.LoadFromFile<UpgradeElementsData>(containerName, null);
+
+                EventManager.Instance.Raise(new UpgradeElementsDataFetchEvent(oldUpgradeElementsData));
             }
             else
             {
                 UpgradeElementsData newUpgradeElementsData = new UpgradeElementsData(500, 0.5f);
+
+                EventManager.Instance.Raise(new UpgradeElementsDataFetchEvent(newUpgradeElementsData));
 
                 saveManager.SaveToFile<UpgradeElementsData>(newUpgradeElementsData, containerName);
             }
@@ -57,6 +61,8 @@ namespace GalaxyDefenders.Managers
 
                 UpgradeElementsData newUpgradeElementsData = new UpgradeElementsData(upgradeElementsData.speed, upgradeElementsData.coolDownTime);
 
+                EventManager.Instance.Raise(new UpgradeElementsDataFetchEvent(newUpgradeElementsData));
+
                 saveManager.SaveToFile<UpgradeElementsData>(newUpgradeElementsData, containerName);
             }
             else if(eventdetails.number==2)
@@ -64,6 +70,8 @@ namespace GalaxyDefenders.Managers
                 upgradeElementsData.coolDownTime += removeCoolDownTime;
 
                 UpgradeElementsData newUpgradeElementsData = new UpgradeElementsData(upgradeElementsData.speed, upgradeElementsData.coolDownTime);
+
+                EventManager.Instance.Raise(new UpgradeElementsDataFetchEvent(newUpgradeElementsData));
 
                 saveManager.SaveToFile<UpgradeElementsData>(newUpgradeElementsData, containerName);
             }

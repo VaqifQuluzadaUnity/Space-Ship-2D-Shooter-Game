@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   lifeTime: 5
+  rb: {fileID: 8981871960250590101}
 --- !u!61 &6675820601620195581
 BoxCollider2D:
   m_ObjectHideFlags: 0

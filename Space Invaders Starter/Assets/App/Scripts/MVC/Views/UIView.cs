@@ -15,11 +15,13 @@ namespace GalaxyDefenders.MVC
         [SerializeField] private MusicControl music;
         [SerializeField] private Text scoreLabel;
         [SerializeField] private Text highScoreLabel;
+        [SerializeField] private Text remainingEnemiesLabel;
         [SerializeField] private GameObject gameOver;
         [SerializeField] private GameObject allClear;
 
         private int score;
         public int bestScore;
+        private int live = 3;
 
         public void GetBestPoints()
         {
@@ -30,36 +32,41 @@ namespace GalaxyDefenders.MVC
             }
         }
 
-		internal void UpdateScore(int value)
-		{
-			score += value;
-			scoreLabel.text = $"Score: {score}";
-		}
-
-		internal void UpdateBestScore(BestScoreData bestScoreData)
-		{
-			bestScore = bestScoreData.bestScore;
-			highScoreLabel.text = $"High Score: {bestScore}";
-		}
-
-		internal void TriggerGameOver(bool failure = true)
-		{
-			GetBestPoints();
-			gameOver.SetActive(failure);
-			allClear.SetActive(!failure);
-
-			Time.timeScale = 0f;
-			music.StopPlaying();
-		}
-
-		internal void Lives(int lives)
+        internal void UpdateScore(int value)
         {
-			livesLabel.text = $"Lives: {lives}";
-			if (lives <= 0)
-			{
-				Debug.Log("Lives finished");
-				TriggerGameOver();
-			}
-		}
-	}
+            score += value;
+            scoreLabel.text = $"Score: {score}";
+        }
+
+        internal void UpdateBestScore(BestScoreData bestScoreData)
+        {
+            bestScore = bestScoreData.bestScore;
+            highScoreLabel.text = $"High Score: {bestScore}";
+        }
+
+        internal void TriggerGameOver(bool failure = true)
+        {
+            GetBestPoints();
+            gameOver.SetActive(failure);
+            allClear.SetActive(!failure);
+
+            Time.timeScale = 0f;
+            music.StopPlaying();
+        }
+
+        internal void Lives(int lives)
+        {
+            live += lives;
+            livesLabel.text = $"Lives: {live}";
+            if (live <= 0)
+            {
+                TriggerGameOver();
+            }
+        }
+
+        void LateUpdate()
+        {
+            remainingEnemiesLabel.text = $"Enemies: {music.enemyCount-music.killCount}";
+        }
+    }
 }

@@ -9,12 +9,14 @@ namespace GalaxyDefenders.Music_SFX
         [SerializeField] private AudioSource source;
         [SerializeField] internal int pitchChangeSteps = 5;
         [SerializeField] private float maxPitch = 5.25f;
-        [SerializeField] private int enemyCount;
+        [SerializeField] public int enemyCount;
+        [SerializeField] public int coolDownTime;
 
         internal static MusicControl Instance;
 
-        private int killCount;
+        public int killCount;
         private int tempKillCount;
+        private float timer;
 
         private readonly float defaultTempo = 1.33f;
         private float pitchChange;
@@ -22,6 +24,16 @@ namespace GalaxyDefenders.Music_SFX
         internal float Tempo { get; private set; }
 
         internal void StopPlaying() => source.Stop();
+
+        void Update()
+        {
+            timer += Time.deltaTime;
+
+            if(timer>coolDownTime)
+            {
+                IncreasePitch();
+            }
+        }
 
         internal void IncreasePitch()
         {
@@ -32,6 +44,8 @@ namespace GalaxyDefenders.Music_SFX
 
             source.pitch = Mathf.Clamp(source.pitch + pitchChange, 1, maxPitch);
             Tempo = Mathf.Pow(2, pitchChange) * Tempo;
+
+            timer = 0;
         }
 
         internal void IncreaseDeathCount()
@@ -41,17 +55,6 @@ namespace GalaxyDefenders.Music_SFX
             {
                 EventManager.Instance.Raise(new TriggerGameOverEvent(false));
                 return;
-            }
-            tempKillCount++;
-
-            if (tempKillCount < (enemyCount / pitchChangeSteps))
-            {
-                return;
-            }
-            else
-            {
-                IncreasePitch();
-                tempKillCount = 0;
             }
         }
 

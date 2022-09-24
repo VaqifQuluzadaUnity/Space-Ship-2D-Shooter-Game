@@ -7,6 +7,7 @@ namespace GalaxyDefenders
     {
         [SerializeField] private float speed = 200f;
         [SerializeField] private float lifeTime = 5f;
+        [SerializeField] private Rigidbody2D rb;
 
         internal void DestroySelf()
         {
@@ -21,7 +22,8 @@ namespace GalaxyDefenders
 
         private void Update()
         {
-            transform.Translate(speed * Time.deltaTime * Vector2.up);
+            rb.velocity = new Vector2(rb.velocity.x,speed * MusicControl.Instance.Tempo);
+            //transform.Translate(speed * MusicControl.Instance.Tempo * Time.deltaTime * Vector2.up);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

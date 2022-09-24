@@ -45,7 +45,7 @@ namespace GalaxyDefenders.MVC
 
         public void LivesEventHandler(LivesEvent eventdetails)
         {
-            view.Lives(eventdetails.result);
+            view.Lives(eventdetails.lives);
         }
     }
 }

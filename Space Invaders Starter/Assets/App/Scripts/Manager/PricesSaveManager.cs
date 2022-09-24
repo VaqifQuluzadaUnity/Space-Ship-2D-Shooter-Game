@@ -24,11 +24,15 @@ namespace GalaxyDefenders.Managers
             if (saveManager.FileExists(containerName))
             {
                 PricesData pricesData = saveManager.LoadFromFile<PricesData>(containerName, null);
+
+                EventManager.Instance.Raise(new PricesDataFetchEvent(pricesData));
             }
             else
             {
                 PricesData newPricesData = new PricesData(150, 150);
-            
+
+                EventManager.Instance.Raise(new PricesDataFetchEvent(newPricesData));
+
                 saveManager.SaveToFile<PricesData>(newPricesData, containerName);
             }
         }
@@ -47,6 +51,8 @@ namespace GalaxyDefenders.Managers
         private void PricesEventHandler(PricesEvent eventdetails)
         {
             PricesData newPricesData = new PricesData(eventdetails.movementPrice, eventdetails.bulletPrice);
+
+            EventManager.Instance.Raise(new PricesDataFetchEvent(newPricesData));
 
             saveManager.SaveToFile<PricesData>(newPricesData, containerName);
         }
